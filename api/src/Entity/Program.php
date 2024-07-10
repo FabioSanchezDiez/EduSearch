@@ -44,10 +44,17 @@ class Program
     #[ORM\ManyToMany(targetEntity: Institution::class, mappedBy: 'programs')]
     private Collection $institutions;
 
+    /**
+     * @var Collection<int, Subject>
+     */
+    #[ORM\ManyToMany(targetEntity: Subject::class, mappedBy: 'programs')]
+    private Collection $subjects;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->institutions = new ArrayCollection();
+        $this->subjects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +174,33 @@ class Program
     {
         if ($this->institutions->removeElement($institution)) {
             $institution->removeProgram($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Subject>
+     */
+    public function getSubjects(): Collection
+    {
+        return $this->subjects;
+    }
+
+    public function addSubject(Subject $subject): static
+    {
+        if (!$this->subjects->contains($subject)) {
+            $this->subjects->add($subject);
+            $subject->addProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubject(Subject $subject): static
+    {
+        if ($this->subjects->removeElement($subject)) {
+            $subject->removeProgram($this);
         }
 
         return $this;
