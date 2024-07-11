@@ -27,6 +27,9 @@ class Field
     #[ORM\OneToMany(targetEntity: Program::class, mappedBy: 'field')]
     private Collection $programs;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
@@ -87,6 +90,18 @@ class Field
                 $program->setField(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
