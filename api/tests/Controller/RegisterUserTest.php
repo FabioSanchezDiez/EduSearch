@@ -41,6 +41,7 @@ class RegisterUserTest extends WebTestCase
             ),
         );
         $response = $this->client->getResponse();
+
         $user = $this->userRepository->findOneBy(["email" => "basicuser@test.com"]);
 
         $this->assertNotNull($user);
@@ -48,7 +49,41 @@ class RegisterUserTest extends WebTestCase
         $this->assertEquals(201, $response->getStatusCode());
         $this->assertEquals("Basic User", $user->getName());
         $this->assertEquals("basicuser@test.com", $user->getEmail());
+        $this->assertEquals("Granada", $user->getAddress());
         $this->assertFalse($user->isVerified());
         $this->assertContains("ROLE_USER", $user->getRoles());
+    }
+
+    public function testRegisterUserAndVerify(): void
+    {
+        $this->client->request(
+            'POST',
+            '/api/users/register',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    "name" => "Verified User",
+                    "email" => "verifieduser@test.com",
+                    "password" => "password",
+                    "address" => "Granada"
+                ],
+                JSON_THROW_ON_ERROR,
+            ),
+        );
+
+        $response = $this->client->getResponse();
+
+        $user = $this->userRepository->findOneBy(["email" => "verifieduser@test.com"]);
+        $user->setVerified(true);
+        $user->setToken(null);
+        $this->userRepository->createOrUpdateUser($user);
+
+        $userUpdated = $this->userRepository->findOneBy(["email" => "verifieduser@test.com"]);
+
+        $this->assertEquals(201, $response->getStatusCode());
+        $this->assertNull($userUpdated->getToken());
+        $this->assertTrue($userUpdated->isVerified());
     }
 }
