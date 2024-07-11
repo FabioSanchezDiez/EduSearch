@@ -5,9 +5,11 @@ namespace App\Tests\Controller;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
 class RegisterUserTest extends WebTestCase
 {
+    use ResetDatabase;
     private KernelBrowser $client;
     private UserRepository $userRepository;
 
