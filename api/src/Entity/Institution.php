@@ -7,14 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 
 #[ORM\Entity(repositoryClass: InstitutionRepository::class)]
 class Institution
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: "uuid", unique: true)]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    protected UuidInterface $id;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -43,7 +46,7 @@ class Institution
         $this->feedback = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): UuidInterface
     {
         return $this->id;
     }

@@ -7,14 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 class Program
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: "uuid", unique: true)]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    protected UuidInterface $id;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -28,9 +31,6 @@ class Program
     #[ORM\Column(type: Types::TEXT)]
     private ?string $priorEducation = null;
 
-    #[ORM\ManyToOne(inversedBy: 'programs')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Field $field = null;
 
     /**
      * @var Collection<int, User>
@@ -56,6 +56,9 @@ class Program
     #[ORM\OneToMany(targetEntity: Feedback::class, mappedBy: 'program')]
     private Collection $feedback;
 
+    #[ORM\ManyToOne(inversedBy: 'programs')]
+    private ?Field $field = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -64,7 +67,7 @@ class Program
         $this->feedback = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
@@ -113,18 +116,6 @@ class Program
     public function setPriorEducation(string $priorEducation): static
     {
         $this->priorEducation = $priorEducation;
-
-        return $this;
-    }
-
-    public function getField(): ?Field
-    {
-        return $this->field;
-    }
-
-    public function setField(?Field $field): static
-    {
-        $this->field = $field;
 
         return $this;
     }
@@ -239,6 +230,18 @@ class Program
                 $feedback->setProgram(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getField(): ?Field
+    {
+        return $this->field;
+    }
+
+    public function setField(?Field $field): static
+    {
+        $this->field = $field;
 
         return $this;
     }

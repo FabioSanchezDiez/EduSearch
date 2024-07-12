@@ -7,15 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: FieldRepository::class)]
 class Field
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: "uuid", unique: true)]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    protected UuidInterface $id;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -23,22 +26,21 @@ class Field
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     /**
      * @var Collection<int, Program>
      */
     #[ORM\OneToMany(targetEntity: Program::class, mappedBy: 'field')]
-    #[Ignore]
     private Collection $programs;
-
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
 
     public function __construct()
     {
         $this->programs = new ArrayCollection();
     }
-
-    public function getId(): ?int
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
@@ -63,6 +65,18 @@ class Field
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -93,18 +107,6 @@ class Field
                 $program->setField(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
 
         return $this;
     }
