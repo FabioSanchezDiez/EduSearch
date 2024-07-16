@@ -59,6 +59,9 @@ class Program
     #[ORM\ManyToOne(inversedBy: 'programs')]
     private ?Field $field = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $additionalInformation = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -242,6 +245,18 @@ class Program
     public function setField(?Field $field): static
     {
         $this->field = $field;
+
+        return $this;
+    }
+
+    public function getAdditionalInformation(): ?string
+    {
+        return $this->additionalInformation;
+    }
+
+    public function setAdditionalInformation(?string $additionalInformation): static
+    {
+        $this->additionalInformation = $additionalInformation;
 
         return $this;
     }
