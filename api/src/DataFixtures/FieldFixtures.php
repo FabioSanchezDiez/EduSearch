@@ -13,21 +13,21 @@ class FieldFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->initializeSectionsData();
+        $this->initializeFieldsData();
 
-        foreach ($this->fieldsData as $sectionInfo) {
+        foreach ($this->fieldsData as $fieldInfo) {
             $field = new Field();
-            $field->setId(Uuid::fromString($sectionInfo['id']));
-            $field->setName($sectionInfo['name']);
-            $field->setDescription($sectionInfo['description']);
-            $field->setImage($sectionInfo['image']);
+            $field->setId(Uuid::fromString($fieldInfo['id']));
+            $field->setName($fieldInfo['name']);
+            $field->setDescription($fieldInfo['description']);
+            $field->setImage($fieldInfo['image']);
             $manager->persist($field);
         }
 
         $manager->flush();
     }
 
-    private function initializeSectionsData(): void
+    private function initializeFieldsData(): void
     {
         $this->fieldsData = [
             [
