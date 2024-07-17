@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService
@@ -14,6 +15,7 @@ class UserService
     public function registerUser(array $userData): void
     {
         $user = new User();
+        $user->setId(Uuid::uuid4());
         $user->setName($userData['name']);
         $user->setEmail($userData['email']);
         $user->setAddress($userData['address']);
