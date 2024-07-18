@@ -34,6 +34,7 @@ class Field
      * @var Collection<int, Program>
      */
     #[ORM\OneToMany(targetEntity: Program::class, mappedBy: 'field')]
+    #[Ignore]
     private Collection $programs;
 
     public function __construct()
