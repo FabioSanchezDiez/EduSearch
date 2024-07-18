@@ -22,6 +22,7 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($this->feedbackData as $feedbackInfo) {
             $feedback = new Feedback();
+            $feedback->setId(Uuid::fromString($feedbackInfo['id']));
             $feedback->setFeedback($feedbackInfo['feedback']);
             $feedback->setRating($feedbackInfo['rating']);
             $feedback->setUser($manager->getReference(User::class, Uuid::fromString($feedbackInfo['user_id'])));
@@ -38,6 +39,7 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
     {
         $this->feedbackData = [
             [
+                'id' => 'c39cf262-4b3f-4821-8f39-5a3a2fe07358',
                 'feedback' => 'Curso muy completo si te quieres dedicar a la programación, completamente recomendado para todos aquellos que quieran aprender desde las bases de la programción hasta como desarrollar aplicaciones completas.',
                 'rating' => 5,
                 'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
