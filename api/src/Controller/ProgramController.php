@@ -16,8 +16,16 @@ class ProgramController extends AbstractController
     #[Route('/programs', name: 'programs', methods: ['GET'])]
     public function programs(): Response
     {
-        $fields = $this->programRepository->findAll();
-        $data = $this->serializer->serialize($fields, 'json');
+        $programs = $this->programRepository->findAll();
+        $data = $this->serializer->serialize($programs, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/programs/field/{fieldId}', name: 'programs_by_field', methods: ['GET'])]
+    public function programsByField(string $fieldId): Response
+    {
+        $programs = $this->programRepository->findBy(['field' => $fieldId]);
+        $data = $this->serializer->serialize($programs, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 }
