@@ -15,7 +15,7 @@ class FieldController extends AbstractController
     public function __construct(private FieldRepository $fieldRepository, private SerializerInterface $serializer){}
 
     #[Route('/fields', name: 'fields', methods: ['GET'])]
-    public function index(): Response
+    public function fields(): Response
     {
         $fields = $this->fieldRepository->findAll();
         $data = $this->serializer->serialize($fields, 'json');
