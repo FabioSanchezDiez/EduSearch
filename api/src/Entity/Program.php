@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 class Program
@@ -36,27 +37,32 @@ class Program
      * @var Collection<int, User>
      */
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'program')]
+    #[Ignore]
     private Collection $users;
 
     /**
      * @var Collection<int, Institution>
      */
     #[ORM\ManyToMany(targetEntity: Institution::class, mappedBy: 'programs')]
+    #[Ignore]
     private Collection $institutions;
 
     /**
      * @var Collection<int, Subject>
      */
     #[ORM\ManyToMany(targetEntity: Subject::class, mappedBy: 'programs')]
+    #[Ignore]
     private Collection $subjects;
 
     /**
      * @var Collection<int, Feedback>
      */
     #[ORM\OneToMany(targetEntity: Feedback::class, mappedBy: 'program')]
+    #[Ignore]
     private Collection $feedback;
 
     #[ORM\ManyToOne(inversedBy: 'programs')]
+    #[Ignore]
     private ?Field $field = null;
 
     #[ORM\Column(length: 255, nullable: true)]
