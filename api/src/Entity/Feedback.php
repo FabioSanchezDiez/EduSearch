@@ -6,13 +6,14 @@ use App\Repository\FeedbackRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: FeedbackRepository::class)]
 class Feedback
 {
     #[ORM\Id]
     #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\GeneratedValue(strategy: "NONE")]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     protected UuidInterface $id;
 
@@ -24,20 +25,29 @@ class Feedback
 
     #[ORM\ManyToOne(inversedBy: 'feedback')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Ignore]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'feedback')]
+    #[Ignore]
     private ?Program $program = null;
 
     #[ORM\ManyToOne(inversedBy: 'feedback')]
+    #[Ignore]
     private ?Subject $subject = null;
 
     #[ORM\ManyToOne(inversedBy: 'feedback')]
+    #[Ignore]
     private ?Institution $institution = null;
 
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function setId(UuidInterface $id): void
+    {
+        $this->id = $id;
     }
 
     public function getFeedback(): ?string
