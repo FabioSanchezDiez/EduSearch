@@ -16,6 +16,20 @@ class SubjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Subject::class);
     }
 
+    /**
+     * @param $programId
+     * @return array
+     */
+    public function findByProgramId($programId): array
+    {
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.programs', 'p')
+            ->where('p.id = :programId')
+            ->setParameter('programId', $programId)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Subject[] Returns an array of Subject objects
     //     */
