@@ -16,7 +16,7 @@ class Subject
 {
     #[ORM\Id]
     #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\GeneratedValue(strategy: "NONE")]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     protected UuidInterface $id;
 
@@ -49,6 +49,11 @@ class Subject
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function setId(UuidInterface $id): void
+    {
+        $this->id = $id;
     }
 
     public function getName(): ?string
