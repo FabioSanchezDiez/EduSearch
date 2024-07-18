@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
 class Subject
@@ -29,12 +30,14 @@ class Subject
      * @var Collection<int, Program>
      */
     #[ORM\ManyToMany(targetEntity: Program::class, inversedBy: 'subjects')]
+    #[Ignore]
     private Collection $programs;
 
     /**
      * @var Collection<int, Feedback>
      */
     #[ORM\OneToMany(targetEntity: Feedback::class, mappedBy: 'subject')]
+    #[Ignore]
     private Collection $feedback;
 
     public function __construct()
