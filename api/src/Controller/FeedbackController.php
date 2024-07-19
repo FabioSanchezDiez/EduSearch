@@ -14,7 +14,7 @@ class FeedbackController extends AbstractController
     public function __construct(private FeedbackRepository $feedbackRepository, private SerializerInterface $serializer){}
 
     #[Route('/feedback/program/{programId}', name: 'feedback_by_program', methods: ['GET'])]
-    public function programsByField(string $programId): Response
+    public function feedbackByProgram(string $programId): Response
     {
         $programs = $this->feedbackRepository->findBy(['program' => $programId]);
         $data = $this->serializer->serialize($programs, 'json');
