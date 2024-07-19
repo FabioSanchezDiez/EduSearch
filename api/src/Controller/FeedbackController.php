@@ -16,8 +16,24 @@ class FeedbackController extends AbstractController
     #[Route('/feedback/program/{programId}', name: 'feedback_by_program', methods: ['GET'])]
     public function feedbackByProgram(string $programId): Response
     {
-        $programs = $this->feedbackRepository->findBy(['program' => $programId]);
-        $data = $this->serializer->serialize($programs, 'json');
+        $feedback = $this->feedbackRepository->findBy(['program' => $programId]);
+        $data = $this->serializer->serialize($feedback, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+    
+    #[Route('/feedback/subject/{subjectId}', name: 'feedback_by_subject', methods: ['GET'])]
+    public function feedbackBySubject(string $subjectId): Response
+    {
+        $feedback = $this->feedbackRepository->findBy(['subject' => $subjectId]);
+        $data = $this->serializer->serialize($feedback, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/feedback/institution/{institutionId}', name: 'feedback_by_institution', methods: ['GET'])]
+    public function feedbackByInstitution(string $institutionId): Response
+    {
+        $feedback = $this->feedbackRepository->findBy(['institution' => $institutionId]);
+        $data = $this->serializer->serialize($feedback, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 }
