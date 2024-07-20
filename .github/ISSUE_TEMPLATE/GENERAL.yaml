@@ -1,0 +1,9 @@
+name: "🌐 General Request"
+description: Create a general request (any other type of request that has no template for it)
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Provide a clear and concise description of your request.
+    validations:
+      required: true
