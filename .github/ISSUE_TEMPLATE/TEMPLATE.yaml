@@ -1,0 +1,9 @@
+name: "General Request"
+description: Create any type of request.
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Provide a clear and concise description of your request.
+    validations:
+      required: true
