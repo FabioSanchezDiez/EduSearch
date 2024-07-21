@@ -40,6 +40,9 @@ class Institution
     #[ORM\OneToMany(targetEntity: Feedback::class, mappedBy: 'institution')]
     private Collection $feedback;
 
+    #[ORM\Column(length: 255)]
+    private ?string $province = null;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
@@ -142,6 +145,18 @@ class Institution
                 $feedback->setInstitution(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProvince(): ?string
+    {
+        return $this->province;
+    }
+
+    public function setProvince(string $province): static
+    {
+        $this->province = $province;
 
         return $this;
     }
