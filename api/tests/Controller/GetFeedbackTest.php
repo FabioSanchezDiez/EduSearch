@@ -134,6 +134,7 @@ class GetFeedbackTest extends WebTestCase
         $institution->setId(Uuid::fromString('5f78bcf8-ddba-4717-bb44-6d71420d1608'));
         $institution->setName('IES Hermenegildo Lanz');
         $institution->setDescription('Centro público');
+        $institution->setProvince('Granada');
         $institution->setLastUpdate(new \DateTime('2024-07-17'));
 
         $this->em->persist($institution);
