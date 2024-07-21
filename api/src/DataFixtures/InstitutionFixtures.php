@@ -23,6 +23,7 @@ class InstitutionFixtures extends Fixture implements DependentFixtureInterface
             $institution->setName($institutionInfo['name']);
             $institution->setDescription($institutionInfo['description']);
             $institution->setLastUpdate(new \DateTime($institutionInfo['last_update']));
+            $institution->setProvince($institutionInfo['province']);
             foreach ($institutionInfo['programs'] as $programId) {
                 $program = $manager->getReference(Program::class, Uuid::fromString($programId));
                 $institution->addProgram($program);
@@ -41,6 +42,7 @@ class InstitutionFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'IES Hermenegildo Lanz',
                 'description' => 'Centro público',
                 'last_update' => '2024-07-17',
+                'province' => 'Granada',
                 'programs' => ['2c0892fe-8a29-426b-8c18-e8fb92bf5868', '3eee4e2a-5072-48b3-a9c3-8f0c36a76fc0'],
             ],
             [
@@ -48,6 +50,7 @@ class InstitutionFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'IES Francisco Ayala',
                 'description' => 'Centro público',
                 'last_update' => '2024-07-17',
+                'province' => 'Granada',
                 'programs' => ['2c0892fe-8a29-426b-8c18-e8fb92bf5868', '3eee4e2a-5072-48b3-a9c3-8f0c36a76fc0'],
             ],
             [
@@ -55,6 +58,7 @@ class InstitutionFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'IES Zaidín Vergeles',
                 'description' => 'Centro público',
                 'last_update' => '2024-07-17',
+                'province' => 'Granada',
                 'programs' => ['2c0892fe-8a29-426b-8c18-e8fb92bf5868', '3eee4e2a-5072-48b3-a9c3-8f0c36a76fc0', '08743d2a-d22c-4272-b804-5c91d44dd079'],
             ],
         ];
