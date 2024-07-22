@@ -75,14 +75,18 @@ class RegisterUserTest extends WebTestCase
 
         $response = $this->client->getResponse();
 
+        $this->assertEquals(201, $response->getStatusCode());
+
         $user = $this->userRepository->findOneBy(["email" => "verifieduser@test.com"]);
-        $user->setVerified(true);
-        $user->setToken(null);
-        $this->userRepository->createOrUpdateUser($user);
+
+        $this->client->request("PUT", "/api/users/confirm/" . $user->getToken());
+
+        $response = $this->client->getResponse();
+
+        $this->assertEquals(200, $response->getStatusCode());
 
         $userUpdated = $this->userRepository->findOneBy(["email" => "verifieduser@test.com"]);
 
-        $this->assertEquals(201, $response->getStatusCode());
         $this->assertNull($userUpdated->getToken());
         $this->assertTrue($userUpdated->isVerified());
     }
