@@ -37,7 +37,7 @@ class UserService
     {
         $user = $this->userRepository->findOneBy(["token" => $token]);
         if(!$user) return false;
-        $user->setConfirmed(true);
+        $user->setVerified(true);
         $user->setToken(null);
         $this->entityManager->flush();
         return true;
