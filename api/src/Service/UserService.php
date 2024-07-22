@@ -10,7 +10,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService
 {
-    public function __construct(private UserPasswordHasherInterface $passwordHasher, private UserRepository $userRepository){}
+    public function __construct(private UserPasswordHasherInterface $passwordHasher, private UserRepository $userRepository, private EmailService $emailService){}
 
     public function registerUser(array $userData): void
     {
@@ -29,7 +29,7 @@ class UserService
         $success = $this->userRepository->createOrUpdateUser($user);
 
         if($success){
-//            $this->emailService->sendConfirmationEmail($user->getName(), $user->getEmail(), $user->getToken());
+            $this->emailService->sendConfirmationEmail($user->getName(), $user->getEmail(), $user->getToken());
         }
     }
 
