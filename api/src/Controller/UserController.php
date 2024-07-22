@@ -12,11 +12,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/api', name: 'api_')]
 class UserController extends AbstractController
 {
+    public function __construct(private UserService $userService){}
+    
     #[Route('/users/register', name: 'users_create', methods: ['POST'])]
-    public function registerUser(Request $request, UserService $userService): JsonResponse
+    public function registerUser(Request $request): JsonResponse
     {
         $userData = json_decode($request->getContent(), true);
-        $userService->registerUser($userData);
+        $this->userService->registerUser($userData);
 
         return new JsonResponse(["success" => "Usuario creado correctamente"], Response::HTTP_CREATED);
     }
