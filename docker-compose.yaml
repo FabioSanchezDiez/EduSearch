@@ -40,10 +40,10 @@ services:
 
   frontend:
     build:
-      context: frontend/
+      context: ./frontend
     volumes:
-      - ./frontend:/src/app
-      - /src/app/node_modules
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
     ports:
       - "3000:3000"
     environment:
