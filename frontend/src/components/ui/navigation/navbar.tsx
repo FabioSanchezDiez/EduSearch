@@ -2,6 +2,7 @@ import React from "react";
 import { ModeToggle } from "../mode-toggle";
 import Link from "next/link";
 import Image from "next/image";
+import Navlinks from "./navlinks";
 
 export default function Navbar() {
   return (
@@ -16,6 +17,7 @@ export default function Navbar() {
             priority={true}
           />
         </Link>
+        <Navlinks></Navlinks>
         <ModeToggle></ModeToggle>
       </nav>
     </header>
