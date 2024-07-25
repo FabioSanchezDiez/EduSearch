@@ -11,12 +11,11 @@ export default function Navbar() {
           <Image
             src="/img/EduSearchLogo.png"
             alt="logo"
-            width={140}
+            width={80}
             height={60}
             priority={true}
           />
         </Link>
-
         <ModeToggle></ModeToggle>
       </nav>
     </header>
