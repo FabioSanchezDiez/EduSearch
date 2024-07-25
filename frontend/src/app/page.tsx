@@ -1,10 +1,9 @@
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import Navbar from "@/components/ui/navigation/navbar";
 
 export default function Home() {
   return (
-    <div>
-      <h1>EduSearch</h1>
-      <ModeToggle></ModeToggle>
-    </div>
+    <>
+      <Navbar></Navbar>
+    </>
   );
 }
