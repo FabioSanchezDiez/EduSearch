@@ -14,12 +14,15 @@ RUN \
 
 COPY src ./src
 COPY public ./public
+COPY tests ./tests
 COPY next.config.mjs .
 COPY tsconfig.json .
 COPY tailwind.config.ts .
 COPY postcss.config.mjs .
 COPY .eslintrc.json .
 COPY components.json .
+COPY playwright.config.ts .
+COPY vitest.config.mts .
 
 # Next.js collects completely anonymous telemetry data about general usage. Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line to disable telemetry at run time

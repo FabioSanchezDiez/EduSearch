@@ -29,6 +29,10 @@ install-dependencies: ##Install composer dependencies
 	sudo docker exec -it edusearch_api composer install
 	sudo docker exec -it edusearch_api php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
-.PHONY: tests
-tests: ##Run all unit tests
+.PHONY: backend-tests
+backend-tests: ##Run all backend tests
 	sudo docker exec -it edusearch_api php bin/phpunit tests/
+
+.PHONY: frontend-tests
+frontend-tests: ##Run all frontend tests
+	sudo docker exec -it edusearch_frontend npm run test
