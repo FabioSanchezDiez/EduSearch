@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, CircleCheck } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -30,6 +30,7 @@ const formSchema = z.object({
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [errors, setErrors] = useState<string[]>([]);
   const router = useRouter();
 
@@ -59,6 +60,9 @@ export default function LoginForm() {
       return;
     }
 
+    setIsSuccess(true);
+    setIsLoading(false);
+
     setTimeout(() => {
       router.push("/");
     }, 2000);
@@ -71,6 +75,18 @@ export default function LoginForm() {
       <h1 className="text-xl font-semibold mb-8">
         Inicia Sesión con tu cuenta
       </h1>
+
+      {isSuccess && (
+        <div className="flex flex-col gap-4 my-4">
+          <Alert variant={"success"}>
+            <CircleCheck className="h-4 w-4"></CircleCheck>
+            <AlertTitle>Éxito</AlertTitle>
+            <AlertDescription>
+              Sesión iniciada correctamente, redirigiendo a su zona personal
+            </AlertDescription>
+          </Alert>
+        </div>
+      )}
 
       {errors.length > 0 && (
         <div className="flex flex-col gap-4 my-4">
