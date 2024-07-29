@@ -14,6 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -21,6 +24,9 @@ const formSchema = z.object({
 });
 
 export default function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,10 +37,24 @@ export default function LoginForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    const { email, password } = values;
+
+    const response = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (!response?.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
   }
 
   return (
