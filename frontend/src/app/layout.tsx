@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 import { SiteFooter } from "@/components/ui/site-footer";
 import Navbar from "@/components/ui/navigation/navbar";
+import { SessionAuthProvider } from "@/components/providers/session-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +28,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar></Navbar>
-          {children}
-          <SiteFooter></SiteFooter>
+          <SessionAuthProvider>
+            <Navbar></Navbar>
+            {children}
+            <SiteFooter></SiteFooter>
+          </SessionAuthProvider>
         </ThemeProvider>
       </body>
     </html>
