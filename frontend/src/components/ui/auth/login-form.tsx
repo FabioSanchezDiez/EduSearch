@@ -76,7 +76,7 @@ export default function LoginForm() {
         Inicia Sesión con tu cuenta
       </h1>
 
-      {isSuccess && (
+      {isSuccess ? (
         <div className="flex flex-col gap-4 my-4">
           <Alert variant={"success"}>
             <CircleCheck className="h-4 w-4"></CircleCheck>
@@ -86,18 +86,18 @@ export default function LoginForm() {
             </AlertDescription>
           </Alert>
         </div>
-      )}
-
-      {errors.length > 0 && (
-        <div className="flex flex-col gap-4 my-4">
-          {errors.map((error) => (
-            <Alert variant={"destructive"} key={error}>
-              <AlertCircle className="h-4 w-4"></AlertCircle>
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          ))}
-        </div>
+      ) : (
+        errors.length > 0 && (
+          <div className="flex flex-col gap-4 my-4">
+            {errors.map((error) => (
+              <Alert variant={"destructive"} key={error}>
+                <AlertCircle className="h-4 w-4"></AlertCircle>
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            ))}
+          </div>
+        )
       )}
 
       <Form {...form}>
