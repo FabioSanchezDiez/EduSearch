@@ -30,6 +30,10 @@ const fields = [
     name: "Sanidad",
     link: "https://firebasestorage.googleapis.com/v0/b/edusearch-1c3c8.appspot.com/o/Salud_-_EduSearch-NO-BG.png?alt=media&token=e65f3cd0-361f-41ab-806d-c887d26c92c1",
   },
+  {
+    name: "Audiovisuales",
+    link: "https://firebasestorage.googleapis.com/v0/b/edusearch-1c3c8.appspot.com/o/Imagen_y_Sonido_-_EduSearch-NO-BG.png?alt=media&token=1a8d3e8a-7e82-4c3d-88a0-7f52bd583a6a",
+  },
 ];
 
 export default function FieldsCarousel() {
