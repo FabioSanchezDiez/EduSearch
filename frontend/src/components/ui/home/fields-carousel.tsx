@@ -36,8 +36,9 @@ export default function FieldsCarousel() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
+
   return (
-    <section className="container flex flex-col gap-6">
+    <section className="container flex flex-col gap-6 px-12">
       <h2 className="font-semibold text-2xl">
         Busca programas educativos por ramas
       </h2>
