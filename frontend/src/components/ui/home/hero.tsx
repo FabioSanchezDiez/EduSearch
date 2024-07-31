@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="container px-16 grid lg:grid-cols-2">
       <div className="flex flex-col justify-center items-start">
-        <h1 className="text-3xl sm:text-5xl font-bold text-primary leading-[115%] mb-8">
+        <h1 className="text-4xl sm:text-5xl font-bold text-primary leading-[115%] mb-8">
           Encuentra tus opciones
           <span className="text-black dark:text-white block">
             y refuerza tu camino
@@ -23,7 +23,7 @@ export default function Hero() {
           <Button>Iniciar Sesión</Button>
         </Link>
       </div>
-      <div className="block mx-auto mt-8 sm:mt-0">
+      <div className="hidden lg:block mx-auto mt-8 sm:mt-0">
         <Image
           className="w-[150px] h-[150px] sm:w-[250px] sm:h-[250px]"
           src={"/img/EduSearchLogo.png"}
