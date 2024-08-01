@@ -4,3 +4,12 @@ export type Field = {
   description: string;
   image: string;
 };
+
+export type Program = {
+  id: string;
+  name: string;
+  description: string;
+  type: string;
+  priorEducation: string;
+  additionalInformation: string;
+};
