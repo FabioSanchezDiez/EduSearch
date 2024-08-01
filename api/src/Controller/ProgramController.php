@@ -28,4 +28,12 @@ class ProgramController extends AbstractController
         $data = $this->serializer->serialize($programs, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
+
+    #[Route('/programs/{id}', name: 'programs_by_id', methods: ['GET'])]
+    public function programById(string $id): Response
+    {
+        $program = $this->programRepository->find($id);
+        $data = $this->serializer->serialize($program, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
 }
