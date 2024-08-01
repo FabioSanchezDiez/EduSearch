@@ -3,12 +3,16 @@
 import { Field } from "@/types/definitions";
 import { Card, CardContent } from "../card";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function FieldCard({ id, name, description, image }: Field) {
+  const { push } = useRouter();
+
   return (
     <Card
       key={id}
       className="cursor-pointer hover:bg-slate-200 dark:hover:bg-zinc-900"
+      onClick={() => push(`/fields/programs/${id}`)}
     >
       <CardContent className="flex flex-col gap-2 aspect-square items-center justify-center p-6">
         <Image
