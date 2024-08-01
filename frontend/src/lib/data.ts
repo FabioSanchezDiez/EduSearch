@@ -10,3 +10,16 @@ export async function fetchFields() {
     console.error("Failed to fetch fields:", err);
   }
 }
+
+export async function fetchProgramsByField(fieldId: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/field/${fieldId}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to fetch programs:", err);
+  }
+}
