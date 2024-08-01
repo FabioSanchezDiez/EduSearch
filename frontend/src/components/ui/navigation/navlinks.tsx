@@ -7,7 +7,7 @@ import {
   ABOUT_PAGE_ROUTE,
   HOME_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
-  REGISTER_PAGE_ROUTE,
+  PROGRAMS_PAGE_ROUTE,
 } from "@/lib/routes";
 import { signOut, useSession } from "next-auth/react";
 import { LoaderIcon } from "lucide-react";
@@ -23,6 +23,9 @@ export default function Navlinks() {
       <Link href={ABOUT_PAGE_ROUTE}>
         <Button variant={"navigation"}>Sobre el proyecto</Button>
       </Link>
+      <Link href={PROGRAMS_PAGE_ROUTE}>
+        <Button variant={"navigation"}>Programas Académicos</Button>
+      </Link>
       {status === "loading" ? (
         <LoaderIcon></LoaderIcon>
       ) : session?.user ? (
@@ -33,9 +36,6 @@ export default function Navlinks() {
         <>
           <Link href={LOGIN_PAGE_ROUTE}>
             <Button variant={"navigation"}>Iniciar Sesión</Button>
-          </Link>
-          <Link href={REGISTER_PAGE_ROUTE}>
-            <Button variant={"navigation"}>Registrarse</Button>
           </Link>
         </>
       )}
