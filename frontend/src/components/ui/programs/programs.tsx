@@ -1,9 +1,9 @@
-import { fetchProgramsByField } from "@/lib/data";
+import { fetchProgramsByFieldName } from "@/lib/data";
 import { Program } from "@/types/definitions";
 import ProgramCard from "./program-card";
 
-export default async function Programs({ id }: { id: string }) {
-  const programs = await fetchProgramsByField(id);
+export default async function Programs({ field }: { field: string }) {
+  const programs = await fetchProgramsByFieldName(field);
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
