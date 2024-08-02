@@ -29,7 +29,7 @@ export default function ProgramsBreadcrumb() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/fields">Familias Profesionales</Link>
+                  <Link href="/programs">Familias Profesionales</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -41,13 +41,13 @@ export default function ProgramsBreadcrumb() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/fields">Familias Profesionales</Link>
+                  <Link href="/programs">Familias Profesionales</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/fields/${pathNames[1]}`}>
+                  <Link href={`/programs/${pathNames[1]}`}>
                     {unformatString(pathNames[1])}
                   </Link>
                 </BreadcrumbLink>
