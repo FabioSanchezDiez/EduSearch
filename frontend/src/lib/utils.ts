@@ -1,6 +1,25 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
+}
+
+export function formatString(str: string) {
+  return encodeURIComponent(
+    str.toLowerCase().replace(/\s+/g, "-").replace(/,/g, "")
+  );
+}
+
+export function unformatString(str: string) {
+  return decodeURIComponent(str)
+    .split("-")
+    .map((word) => {
+      if (word.length === 1) {
+        return word;
+      } else {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+    })
+    .join(" ");
 }

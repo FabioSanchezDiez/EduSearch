@@ -23,3 +23,16 @@ export async function fetchProgramsByField(fieldId: string) {
     console.error("Failed to fetch programs:", err);
   }
 }
+
+export async function fetchProgramsByFieldName(fieldName: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/field/name/${fieldName}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to fetch programs:", err);
+  }
+}
