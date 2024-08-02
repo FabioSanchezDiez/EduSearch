@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FieldRepository;
 use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,15 @@ class ProgramController extends AbstractController
     #[Route('/programs/field/{fieldId}', name: 'programs_by_field', methods: ['GET'])]
     public function programsByField(string $fieldId): Response
     {
+        $programs = $this->programRepository->findBy(['field' => $fieldId]);
+        $data = $this->serializer->serialize($programs, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/programs/field/name/{fieldName}', name: 'programs_by_field_name', methods: ['GET'])]
+    public function programsByFieldName(string $fieldName, FieldRepository $fieldRepository): Response
+    {
+        $fieldId = $fieldRepository->findOneBy(['name' => str_replace('-', ' ',$fieldName)])->getId();
         $programs = $this->programRepository->findBy(['field' => $fieldId]);
         $data = $this->serializer->serialize($programs, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
