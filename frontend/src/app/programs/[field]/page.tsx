@@ -9,7 +9,6 @@ export default function ProgramsPage({
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">Programas Académicos</h1>
       <Suspense fallback={<GenericSkeleton></GenericSkeleton>}>
         <Programs field={params.field}></Programs>
       </Suspense>
