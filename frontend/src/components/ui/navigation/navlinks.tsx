@@ -24,7 +24,7 @@ export default function Navlinks() {
         <Button variant={"navigation"}>Sobre el proyecto</Button>
       </Link>
       <Link href={PROGRAMS_PAGE_ROUTE}>
-        <Button variant={"navigation"}>Programas Académicos</Button>
+        <Button variant={"navigation"}>Programas Educativos</Button>
       </Link>
       {status === "loading" ? (
         <LoaderIcon></LoaderIcon>
