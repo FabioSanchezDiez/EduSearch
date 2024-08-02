@@ -13,7 +13,7 @@ export default function FieldCard({ id, name, description, image }: Field) {
     <Card
       key={id}
       className="cursor-pointer hover:bg-slate-200 dark:hover:bg-zinc-900"
-      onClick={() => push(`/fields/${formatString(name)}`)}
+      onClick={() => push(`/programs/${formatString(name)}`)}
     >
       <CardContent className="flex flex-col gap-2 aspect-square items-center justify-center p-6">
         <Image
