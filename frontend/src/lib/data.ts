@@ -36,3 +36,16 @@ export async function fetchProgramsByFieldName(fieldName: string) {
     console.error("Failed to fetch programs:", err);
   }
 }
+
+export async function fetchProgramByName(name: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/name/${name}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to fetch programs:", err);
+  }
+}
