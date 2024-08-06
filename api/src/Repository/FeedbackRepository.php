@@ -20,6 +20,24 @@ class FeedbackRepository extends ServiceEntityRepository
 
     public function createFeedback(array $feedbackData): Feedback
     {
+        $filledEntities = 0;
+
+        if (!empty($feedbackData['institution'])) {
+            $filledEntities++;
+        }
+
+        if (!empty($feedbackData['subject'])) {
+            $filledEntities++;
+        }
+
+        if (!empty($feedbackData['program'])) {
+            $filledEntities++;
+        }
+
+        if ($filledEntities > 1) {
+            throw new \InvalidArgumentException('Solo se puede añadir feedback para una entidad en la misma reseña');
+        }
+
         $feedback = new Feedback();
         $feedback->setId(Uuid::uuid4());
         $feedback->setFeedback($feedbackData['feedback']);
