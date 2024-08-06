@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Repository\FeedbackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -35,5 +37,14 @@ class FeedbackController extends AbstractController
         $feedback = $this->feedbackRepository->findBy(['institution' => $institutionId]);
         $data = $this->serializer->serialize($feedback, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/feedback/create', name: 'feedback_create', methods: ['POST'])]
+    public function createFeedback(Request $request): JsonResponse
+    {
+        $feedbackData = json_decode($request->getContent(), true);
+        $this->feedbackRepository->createFeedback($feedbackData);
+
+        return new JsonResponse(["success" => "Feedback creada correctamente"], Response::HTTP_CREATED);
     }
 }
