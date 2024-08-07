@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "EduSearch",
   description:
-    "Designed to help students find their ideal educational paths and support them on their journey.",
+    "EduSearch, la plataforma para encontrar tu camino educativo y recibir apoyo en tu trayectoria.",
 };
 
 export default function RootLayout({
