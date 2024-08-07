@@ -16,7 +16,6 @@ export default function ProgramsBreadcrumb() {
   const paths = usePathname();
   const pathNames = paths.split("/").filter((path) => path);
 
-  console.log(pathNames);
   return (
     <>
       <Breadcrumb>
