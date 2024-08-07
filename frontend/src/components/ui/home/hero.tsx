@@ -19,8 +19,8 @@ export default function Hero() {
           educativas para dar el próximo paso en tu carrera y te brinda ayuda en
           la misma a través de opiniones.
         </p>
-        <Link href={"/accounts/login"}>
-          <Button>Iniciar Sesión</Button>
+        <Link href={"/accounts/register"}>
+          <Button>Registrarse</Button>
         </Link>
       </div>
       <div className="hidden lg:block mx-auto mt-8 sm:mt-0">
