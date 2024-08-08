@@ -49,3 +49,32 @@ export async function fetchProgramByName(name: string) {
     console.error("Failed to fetch programs:", err);
   }
 }
+
+export async function registerUser(
+  name: string,
+  email: string,
+  password: string,
+  address: string
+) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          address,
+        }),
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to register user:", err);
+  }
+}
