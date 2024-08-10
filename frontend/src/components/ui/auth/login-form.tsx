@@ -24,8 +24,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, CircleCheck } from "lucide-react";
 
 const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(4).max(255),
+  email: z.string().email({ message: "El correo electrónico no es válido" }),
+  password: z
+    .string()
+    .min(4, { message: "La contraseña debe tener al menos 4 caracteres" })
+    .max(255, {
+      message: "La contraseña no puede tener más de 255 caracteres",
+    }),
 });
 
 export default function LoginForm() {
