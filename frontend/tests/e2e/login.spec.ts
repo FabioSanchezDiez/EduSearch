@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "./pages/LoginPage";
+import { AuthPage } from "./pages/AuthPage";
 
 test("Login page test", async ({ page }) => {
-  const loginPage = new LoginPage(page);
+  const loginPage = new AuthPage(page);
 
   await test.step("Load page", async () => {
     await loginPage.goto("/accounts/login");
@@ -13,7 +13,7 @@ test("Login page test", async ({ page }) => {
     await expect(loginPage.passwordInput).toHaveCount(1);
     await expect(loginPage.submitButton).toHaveCount(1);
 
-    await loginPage.fillLoginForm("test@example.com", "password");
+    await loginPage.login("test@example.com", "password");
   });
 
   await test.step("Find feedback alert", async () => {
