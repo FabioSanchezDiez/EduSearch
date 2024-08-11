@@ -68,6 +68,9 @@ class Program
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $additionalInformation = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $tag = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -268,6 +271,18 @@ class Program
     public function setAdditionalInformation(?string $additionalInformation): static
     {
         $this->additionalInformation = $additionalInformation;
+
+        return $this;
+    }
+
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
+
+    public function setTag(string $tag): static
+    {
+        $this->tag = $tag;
 
         return $this;
     }
