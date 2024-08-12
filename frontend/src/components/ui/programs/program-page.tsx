@@ -1,5 +1,5 @@
-import { fetchProgramByName } from "@/lib/data";
-import { Program } from "@/types/definitions";
+import { fetchProgramByName, fetchSubjectsByProgram } from "@/lib/data";
+import { Program, Subject } from "@/types/definitions";
 import { Button } from "../button";
 
 export default async function ProgramPage({
@@ -8,6 +8,7 @@ export default async function ProgramPage({
   programName: string;
 }) {
   const program: Program = await fetchProgramByName(programName);
+  const subjects: Subject[] = await fetchSubjectsByProgram(program?.id);
 
   const renderField = (
     field: any,
@@ -27,6 +28,13 @@ export default async function ProgramPage({
         <div>
           <h2 className="text-xl">Requisitos Académicos</h2>
           <p>{renderField(program?.priorEducation)}</p>
+        </div>
+        <div>
+          <h2 className="text-xl">Asignaturas</h2>
+          {subjects.length >= 1 &&
+            subjects.map((subject: Subject) => (
+              <p key={subject.id}>{subject.name}</p>
+            ))}
         </div>
         <div>
           <h2 className="text-xl">Información Adicional</h2>

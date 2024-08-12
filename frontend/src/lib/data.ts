@@ -50,6 +50,19 @@ export async function fetchProgramByName(name: string) {
   }
 }
 
+export async function fetchSubjectsByProgram(id: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/subjects/program/${id}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to fetch subjects:", err);
+  }
+}
+
 export async function registerUser(
   name: string,
   email: string,
