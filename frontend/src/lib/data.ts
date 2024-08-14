@@ -91,3 +91,17 @@ export async function registerUser(
     console.error("Failed to register user:", err);
   }
 }
+
+export async function confirmUser(token: string) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/confirm/${token}`,
+      { method: "PUT", headers: { "Content-Type": "application/json" } }
+    );
+    const data = await res.json();
+
+    return data;
+  } catch (err) {
+    throw new Error("Failed to confirm the user");
+  }
+}
