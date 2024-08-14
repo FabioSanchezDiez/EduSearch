@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\FieldRepository;
 use App\Repository\ProgramRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -51,6 +52,15 @@ class ProgramController extends AbstractController
     public function programByName(string $name): Response
     {
         $program = $this->programRepository->findOneBy(['name' => str_replace('-', ' ',$name)]);
+        $data = $this->serializer->serialize($program, 'json');
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/programs/user/{email}', name: 'programs_by_user', methods: ['GET'])]
+    public function programByUser(string $email, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->findOneBy(['email' => $email]);
+        $program = $this->programRepository->find($user->getProgram()?->getId());
         $data = $this->serializer->serialize($program, 'json');
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
