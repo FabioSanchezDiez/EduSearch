@@ -25,7 +25,7 @@ class JWTEventSubscriber implements EventSubscriberInterface
         }
 
         $data = array_merge(
-            ["name" => $user->getName(), "email" => $user->getEmail()],
+            ["name" => $user->getName(), "email" => $user->getEmail(), "province" => $user->getAddress()],
             $event->getData()
         );
 
