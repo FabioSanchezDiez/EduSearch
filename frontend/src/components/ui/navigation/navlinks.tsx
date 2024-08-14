@@ -5,6 +5,7 @@ import { Button } from "../button";
 import Link from "next/link";
 import {
   ABOUT_PAGE_ROUTE,
+  DASHBOARD_PAGE_ROUTE,
   HOME_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
   PROGRAMS_PAGE_ROUTE,
@@ -29,9 +30,14 @@ export default function Navlinks() {
       {status === "loading" ? (
         <LoaderIcon></LoaderIcon>
       ) : session?.user ? (
-        <Button variant={"navigation"} onClick={() => signOut()}>
-          Cerrar Sesión
-        </Button>
+        <>
+          <Link href={DASHBOARD_PAGE_ROUTE}>
+            <Button variant={"navigation"}>Área Personal</Button>
+          </Link>
+          <Button variant={"navigation"} onClick={() => signOut()}>
+            Cerrar Sesión
+          </Button>
+        </>
       ) : (
         <>
           <Link href={LOGIN_PAGE_ROUTE}>
