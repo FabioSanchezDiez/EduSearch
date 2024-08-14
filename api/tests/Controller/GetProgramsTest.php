@@ -4,6 +4,7 @@ namespace App\Tests\Controller;
 
 use App\Entity\Field;
 use App\Entity\Program;
+use App\Entity\User;
 use App\Repository\ProgramRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
@@ -292,6 +293,49 @@ class GetProgramsTest extends WebTestCase
         $this->em->flush();
 
         $this->client->request("GET", "/api/programs/name/técnico-superior-en-administracion-de-sistemas-informáticos-en-red");
+        $response = $this->client->getResponse();
+        $content = $response->getContent();
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertNotNull($content);
+
+        $program = $this->programRepository->find('08743d2a-d22c-4272-b804-5c91d44dd079');
+        $this->assertNotNull($program);
+        $this->assertEquals('Técnico Superior en Administracion de Sistemas Informáticos en Red', $program->getName());
+        $this->assertEquals('La competencia general de este título consiste en configurar, administrar y mantener sistemas informáticos, garantizando la funcionalidad, la integridad de los recursos y servicios del sistema, con la calidad exigida y cumpliendo la reglamentación vigente.', $program->getDescription());
+        $this->assertEquals('Para poder optar, es necesario contar con alguno de los siguientes títulos educativos: Bachillerato, certificado de haber superado todas las materias del Bachillerato, Formación Profesional de Grado Medio, Técnico/a Superior, Técnico Especialista o equivalente académico, Técnico/a de Artes Plásticas y Diseño según lo establecido en la Ley Orgánica de Educación, o una titulación universitaria o equivalente.', $program->getPriorEducation());
+        $this->assertEquals('Formación Reglada', $program->getType());
+        $this->assertEquals('Grado Superior', $program->getTag());
+        $this->assertEquals('https://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/fp-grado-superior/detalle-titulo?idTitulo=50', $program->getAdditionalInformation());
+    }
+
+    public function testGetProgramByUser(): void
+    {
+        $program = new Program();
+        $program->setId(Uuid::fromString('08743d2a-d22c-4272-b804-5c91d44dd079'));
+        $program->setName('Técnico Superior en Administracion de Sistemas Informáticos en Red');
+        $program->setDescription('La competencia general de este título consiste en configurar, administrar y mantener sistemas informáticos, garantizando la funcionalidad, la integridad de los recursos y servicios del sistema, con la calidad exigida y cumpliendo la reglamentación vigente.');
+        $program->setPriorEducation('Para poder optar, es necesario contar con alguno de los siguientes títulos educativos: Bachillerato, certificado de haber superado todas las materias del Bachillerato, Formación Profesional de Grado Medio, Técnico/a Superior, Técnico Especialista o equivalente académico, Técnico/a de Artes Plásticas y Diseño según lo establecido en la Ley Orgánica de Educación, o una titulación universitaria o equivalente.');
+        $program->setType('Formación Reglada');
+        $program->setTag('Grado Superior');
+        $program->setAdditionalInformation('https://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/fp-grado-superior/detalle-titulo?idTitulo=50');
+
+        $this->em->persist($program);
+
+        $user = new User();
+        $user->setId(Uuid::fromString('f0325753-b06f-475c-a166-7735e58ef1cb'));
+        $user->setName('Fabio');
+        $user->setEmail('fabio@gmail.com');
+        $user->setPassword('$2y$13$JKAHm8CB0DjWgMpm2wXgoeEPiKvbumY6cTLKMpZcCf6uGI1Tz8or6');
+        $user->setVerified(true);
+        $user->setAddress('Granada');
+        $user->setRoles(['ROLE_USER']);
+        $user->setProgram($program);
+
+        $this->em->persist($user);
+        $this->em->flush();
+
+        $this->client->request("GET", "/api/programs/user/fabio@gmail.com");
         $response = $this->client->getResponse();
         $content = $response->getContent();
 
