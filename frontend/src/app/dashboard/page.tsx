@@ -1,5 +1,4 @@
 import MyProgram from "@/components/ui/dashboard/my-program";
-import { Separator } from "@/components/ui/separator";
 
 export default function Dashboard() {
   return (
@@ -8,7 +7,6 @@ export default function Dashboard() {
       <section className="my-6">
         <MyProgram></MyProgram>
       </section>
-      <Separator></Separator>
     </>
   );
 }
