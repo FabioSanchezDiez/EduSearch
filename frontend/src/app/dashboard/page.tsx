@@ -1,20 +1,14 @@
-"use client";
-import { useSession } from "next-auth/react";
+import MyProgram from "@/components/ui/dashboard/my-program";
+import { Separator } from "@/components/ui/separator";
 
 export default function Dashboard() {
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
-  console.log(session);
-
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <pre>
-        <code>{JSON.stringify(session, null, 2)}</code>
-      </pre>
-    </div>
+    <>
+      <h1 className="text-4xl font-bold leading-[115%]">Área Personal</h1>
+      <section className="my-6">
+        <MyProgram></MyProgram>
+      </section>
+      <Separator></Separator>
+    </>
   );
 }
