@@ -1,12 +1,17 @@
 "use client";
 
-import { Program } from "@/types/definitions";
+import { ProgramItem } from "@/types/definitions";
 import { Card, CardContent, CardFooter } from "../card";
 import { usePathname, useRouter } from "next/navigation";
 import { formatString } from "@/lib/utils";
 import { Button } from "../button";
 
-export default function ProgramCard({ id, name, description }: Program) {
+export default function ProgramCard({
+  id,
+  name,
+  description,
+  tag,
+}: ProgramItem) {
   const paths = usePathname();
   const fieldName = paths.split("/").filter((path) => path)[1];
   const { push } = useRouter();
