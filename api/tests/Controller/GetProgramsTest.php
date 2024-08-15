@@ -7,6 +7,7 @@ use App\Entity\Program;
 use App\Entity\User;
 use App\Repository\ProgramRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -18,14 +19,14 @@ class GetProgramsTest extends WebTestCase
     private KernelBrowser $client;
     private ProgramRepository $programRepository;
     private EntityManagerInterface $em;
-
+    private JWTTokenManagerInterface $jwtTokenManager;
     protected function setUp(): void
     {
         $this->client = static::createClient();
         $container = static::getContainer();
         $this->programRepository = $container->get(ProgramRepository::class);
         $this->em = $container->get(EntityManagerInterface::class);
-
+        $this->jwtTokenManager = $container->get(JWTTokenManagerInterface::class);
     }
 
     public function testGetAllPrograms(): void
@@ -335,7 +336,9 @@ class GetProgramsTest extends WebTestCase
         $this->em->persist($user);
         $this->em->flush();
 
-        $this->client->request("GET", "/api/programs/user/fabio@gmail.com");
+        $jwtToken = $this->jwtTokenManager->create($user);
+
+        $this->client->request("GET", "/api/programs/user/fabio@gmail.com", [], [], ['HTTP_AUTHORIZATION' => 'Bearer ' . $jwtToken]);
         $response = $this->client->getResponse();
         $content = $response->getContent();
 
