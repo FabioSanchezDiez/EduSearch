@@ -12,6 +12,7 @@ export type Program = {
   type: string;
   priorEducation: string;
   additionalInformation: string;
+  tag: string;
 };
 
 export type Subject = {
@@ -19,3 +20,5 @@ export type Subject = {
   name: string;
   description: string;
 };
+
+export type ProgramItem = Pick<Program, "id" | "name" | "description" | "tag">;
