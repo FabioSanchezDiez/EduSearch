@@ -1,5 +1,5 @@
 import { fetchProgramsByFieldName } from "@/lib/data";
-import { Program } from "@/types/definitions";
+import { ProgramItem } from "@/types/definitions";
 import ProgramCard from "./program-card";
 
 export default async function Programs({ field }: { field: string }) {
@@ -8,12 +8,13 @@ export default async function Programs({ field }: { field: string }) {
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {programs.length >= 1 &&
-        programs.map((program: Program) => (
+        programs.map((program: ProgramItem) => (
           <ProgramCard
             key={program.id}
             id={program.id}
             name={program.name}
             description={program.description}
+            tag={program.tag}
           ></ProgramCard>
         ))}
     </section>
