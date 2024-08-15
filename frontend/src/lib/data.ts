@@ -50,6 +50,27 @@ export async function fetchProgramByName(name: string) {
   }
 }
 
+export async function fetchProgramByUser(email: string, token: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/user/${email}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Failed to fetch program:", err);
+    return null;
+  }
+}
+
 export async function fetchSubjectsByProgram(id: string) {
   try {
     unstable_noStore();
