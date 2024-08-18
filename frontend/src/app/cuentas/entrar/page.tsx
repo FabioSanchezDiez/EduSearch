@@ -1,4 +1,5 @@
 import LoginForm from "@/components/ui/auth/login-form";
+import { REGISTER_PAGE_ROUTE } from "@/lib/routes";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -9,7 +10,7 @@ export default function LoginPage() {
         <div className="mt-6">
           <p>
             ¿Todavía no tienes una cuenta? Regístrate{" "}
-            <Link href={"/accounts/register"}>
+            <Link href={REGISTER_PAGE_ROUTE}>
               <span className="text-primary font-bold">pulsando aquí</span>
             </Link>
           </p>
