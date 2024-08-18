@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "../alert";
 import { AlertCircle, CircleCheck } from "lucide-react";
+import { LOGIN_PAGE_ROUTE } from "@/lib/routes";
 
 export default function ConfirmationPage({ token }: { token: string }) {
   const [errors, setErrors] = useState<string[]>([]);
@@ -27,8 +28,8 @@ export default function ConfirmationPage({ token }: { token: string }) {
     setIsLoading(false);
 
     setTimeout(() => {
-      router.push("/accounts/login");
-    }, 3000);
+      router.push(LOGIN_PAGE_ROUTE);
+    }, 2000);
   };
 
   return (
