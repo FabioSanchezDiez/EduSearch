@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { AuthPage } from "./pages/AuthPage";
+import { REGISTER_PAGE_ROUTE } from "@/lib/routes";
 
 test("Register page test", async ({ page }) => {
   const registerPage = new AuthPage(page);
 
   await test.step("Load page", async () => {
-    await registerPage.goto("/accounts/register");
+    await registerPage.goto(REGISTER_PAGE_ROUTE);
   });
 
   await test.step("Find and fill inputs and submit them", async () => {
