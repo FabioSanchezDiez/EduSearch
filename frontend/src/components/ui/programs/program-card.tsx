@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from "../card";
 import { usePathname, useRouter } from "next/navigation";
 import { formatString } from "@/lib/utils";
 import { Button } from "../button";
+import { PROGRAMS_PAGE_ROUTE } from "@/lib/routes";
 
 export default function ProgramCard({
   id,
@@ -20,7 +21,9 @@ export default function ProgramCard({
     <Card
       key={id}
       className="cursor-pointer hover:bg-slate-200 dark:hover:bg-zinc-900 flex flex-col justify-end"
-      onClick={() => push(`/programs/${fieldName}/${formatString(name)}`)}
+      onClick={() =>
+        push(`${PROGRAMS_PAGE_ROUTE}/${fieldName}/${formatString(name)}`)
+      }
     >
       <CardContent className="flex flex-col gap-2 aspect-square items-center justify-center p-4">
         <p className="text-2xl font-semibold text-center">{name}</p>
