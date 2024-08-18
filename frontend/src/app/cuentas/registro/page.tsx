@@ -1,4 +1,5 @@
 import RegisterForm from "@/components/ui/auth/register-form";
+import { LOGIN_PAGE_ROUTE } from "@/lib/routes";
 import Link from "next/link";
 
 export default function RegisterPage() {
@@ -9,7 +10,7 @@ export default function RegisterPage() {
         <div className="mt-6">
           <p>
             ¿Ya tienes una cuenta? Inicia sesión{" "}
-            <Link href={"/accounts/login"}>
+            <Link href={LOGIN_PAGE_ROUTE}>
               <span className="text-primary font-bold">pulsando aquí</span>
             </Link>
           </p>
