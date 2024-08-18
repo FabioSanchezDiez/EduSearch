@@ -1,3 +1,4 @@
+import { LOGIN_PAGE_ROUTE } from "@/lib/routes";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -37,6 +38,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/accounts/login",
+    signIn: LOGIN_PAGE_ROUTE,
   },
 };
