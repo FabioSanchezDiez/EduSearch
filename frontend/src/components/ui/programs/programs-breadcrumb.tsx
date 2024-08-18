@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { PROGRAMS_PAGE_ROUTE } from "@/lib/routes";
 import { unformatString } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,7 +29,7 @@ export default function ProgramsBreadcrumb() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/programs">Familias Profesionales</Link>
+                  <Link href={PROGRAMS_PAGE_ROUTE}>Familias Profesionales</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -40,13 +41,13 @@ export default function ProgramsBreadcrumb() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/programs">Familias Profesionales</Link>
+                  <Link href={PROGRAMS_PAGE_ROUTE}>Familias Profesionales</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/programs/${pathNames[1]}`}>
+                  <Link href={`${PROGRAMS_PAGE_ROUTE}/${pathNames[1]}`}>
                     {unformatString(pathNames[1])}
                   </Link>
                 </BreadcrumbLink>

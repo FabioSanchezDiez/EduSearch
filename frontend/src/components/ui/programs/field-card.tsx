@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { formatString } from "@/lib/utils";
 import { Button } from "../button";
+import { PROGRAMS_PAGE_ROUTE } from "@/lib/routes";
 
 export default function FieldCard({ id, name, description, image }: Field) {
   const { push } = useRouter();
@@ -14,7 +15,7 @@ export default function FieldCard({ id, name, description, image }: Field) {
     <Card
       key={id}
       className="cursor-pointer hover:bg-slate-200 dark:hover:bg-zinc-900 flex flex-col justify-end"
-      onClick={() => push(`/programs/${formatString(name)}`)}
+      onClick={() => push(`${PROGRAMS_PAGE_ROUTE}/${formatString(name)}`)}
     >
       <CardContent className="flex flex-col gap-2 aspect-square items-center justify-center p-4">
         <Image
