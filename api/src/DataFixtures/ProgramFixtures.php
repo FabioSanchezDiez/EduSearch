@@ -68,8 +68,28 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
                 'field_id' => '0edbed88-f546-4bee-b16a-035c16abc5b4'
             ],
             [
+                'id' => 'e3d473e7-1517-4777-9161-9f27342f1fbf',
+                'name' => 'Técnico en Sistemas Microinformáticos y Redes',
+                'description' => 'La competencia general de este título consiste en instalar, configurar y mantener sistemas microinformáticos, aislados o en red, así como redes locales en pequeños entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, seguridad y respeto al medio ambiente establecidos.',
+                'prior_education' => 'Para poder optar a la Formación Profesional, debes cumplir alguno de los siguientes requisitos: poseer un título de Graduado/a en Educación Secundaria Obligatoria o un nivel académico superior, un Título Profesional Básico (Formación Profesional de Grado Básico), o un Título de Técnico/a o Técnico/a Auxiliar o equivalente a efectos académicos. También puedes haber superado el segundo curso del Bachillerato Unificado y Polivalente (BUP), la prueba de acceso a ciclos formativos de grado medio, para la cual se requiere tener al menos diecisiete años cumplidos en el año de la prueba, o la prueba de acceso a la Universidad para mayores de 25 años (teniendo en cuenta que la superación de las pruebas de acceso a la Universidad para mayores de 40 y 45 años no es un requisito válido para acceder a FP).',
+                'type' => 'Formación Reglada',
+                'tag' => 'Grado Medio',
+                'additional_information' => 'https://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/fp-grado-medio/detalle-titulo?idTitulo=17',
+                'field_id' => '0edbed88-f546-4bee-b16a-035c16abc5b4'
+            ],
+            [
+                'id' => '43c504a0-c759-4e85-9835-af4bffbbf462',
+                'name' => 'Grado en Ingeniería Informática',
+                'description' => 'La ingeniería informática es una disciplina que combina principios de la ingeniería y la informática para diseñar, desarrollar y mantener sistemas de hardware y software. Los ingenieros informáticos se encargan de la creación y optimización de tecnologías de procesamiento de datos, redes y sistemas de información, aplicando conocimientos de algoritmos, arquitectura de computadores y programación.',
+                'prior_education' => 'Para poder optar, es necesario star en posesión del título de Bachiller y haber superado la EvAU (Evaluación para el Acceso a la Universidad) o contar con un título de Técnico Superior o Técnica Superior de FP, de Artes Plásticas y Diseño o Deportivo. Haber superado la prueba de acceso a la Universidad para mayores de 25 años.',
+                'type' => 'Formación Reglada',
+                'tag' => 'Carrera Universitaria',
+                'additional_information' => 'https://www.ugr.es/estudiantes/grados/grado-ingenieria-informatica',
+                'field_id' => '0edbed88-f546-4bee-b16a-035c16abc5b4'
+            ],
+            [
                 'id' => '74d8b517-4d63-4640-ba61-475f316d2e0d',
-                'name' => 'Técnico superior en Acondicionamiento Físico',
+                'name' => 'Técnico Superior en Acondicionamiento Físico',
                 'description' => 'La competencia general de este título consiste en elaborar, coordinar, desarrollar y evaluar programas de acondicionamiento físico para todo tipo de personas usuarias y en diferentes espacios de práctica, dinamizando las actividades y orientándolas hacia la mejora de la calidad de vida y la salud, garantizando la seguridad y aplicando criterios de calidad, tanto en el proceso como en los resultados del servicio.',
                 'prior_education' => 'Para poder optar, es necesario cumplir con uno de los siguientes requisitos educativos: poseer el título de Bachiller, Técnico Superior de Formación Profesional o un grado universitario, Técnico de Grado Medio de Formación Profesional o el título de Técnico o Técnica de Artes Plásticas y Diseño. Alternativamente, también podrás optar si has completado una oferta formativa de Grado C incluida en el ciclo formativo, un curso específico de formación preparatorio y gratuito para el acceso a ciclos de grado superior en centros autorizados, o has aprobado una prueba de acceso designada por la Administración educativa.',
                 'type' => 'Formación Reglada',
@@ -79,12 +99,22 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             ],
             [
                 'id' => 'aaa01ed4-d828-48b8-893a-b048c74c5ec8',
-                'name' => 'Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL',
-                'description' => 'Aprende Desarrollo Web con este curso 100% práctico, paso a paso y sin conocimientos previo INCLUYE 4 PROYECTOS FINALES',
+                'name' => 'Curso de Desarrollo Web Moderno Completo',
+                'description' => 'Este curso te enseña a dominar HTML y CSS para diseñar sitios web modernos siguiendo buenas prácticas y metodologías como Módulos y BEM. Aprenderás a desarrollar páginas web con HTML, CSS, y JavaScript (ES6), crear sitios dinámicos y aplicaciones CRUD con PHP y MySQL, integrar pagos con PayPal, y asegurar tus aplicaciones. Al finalizar, estarás preparado para postularte a empleos de Desarrollador Web Junior.',
                 'prior_education' => '',
                 'type' => 'Autodidacta',
                 'tag' => 'Curso Online',
                 'additional_information' => 'https://www.udemy.com/course/desarrollo-web-completo-con-html5-css3-js-php-y-mysql/',
+                'field_id' => '0edbed88-f546-4bee-b16a-035c16abc5b4'
+            ],
+            [
+                'id' => '72e80146-431a-438a-94e2-99a45748f641',
+                'name' => 'Máster Completo en Java de cero a experto 2024',
+                'description' => 'Este curso te enseña Java desde lo básico hasta nivel avanzado usando IntelliJ IDEA, con más de 50 tareas y desafíos. Aprenderás programación funcional con Java 8, orientación a objetos, pruebas unitarias, manejo de hilos y excepciones, y desarrollo web completo con Jakarta EE 9 y Spring Framework 5. También incluye el desarrollo de aplicaciones Full Stack y preparación para la certificación de Java Oracle.',
+                'prior_education' => '',
+                'type' => 'Autodidacta',
+                'tag' => 'Curso Online',
+                'additional_information' => 'https://www.udemy.com/course/master-completo-java-de-cero-a-experto/',
                 'field_id' => '0edbed88-f546-4bee-b16a-035c16abc5b4'
             ],
         ];
