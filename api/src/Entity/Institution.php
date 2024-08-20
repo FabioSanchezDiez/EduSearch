@@ -43,6 +43,9 @@ class Institution
     #[ORM\Column(length: 255)]
     private ?string $province = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
@@ -157,6 +160,18 @@ class Institution
     public function setProvince(string $province): static
     {
         $this->province = $province;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
