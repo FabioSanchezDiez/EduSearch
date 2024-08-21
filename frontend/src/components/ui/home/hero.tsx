@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../button";
+import { REGISTER_PAGE_ROUTE } from "@/lib/routes";
 
 export default function Hero() {
   return (
@@ -19,7 +20,7 @@ export default function Hero() {
           educativas para dar el próximo paso en tu carrera y te brinda ayuda en
           la misma a través de opiniones.
         </p>
-        <Link href={"/accounts/register"}>
+        <Link href={REGISTER_PAGE_ROUTE}>
           <Button>Registrarse</Button>
         </Link>
       </div>
