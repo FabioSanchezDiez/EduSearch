@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, CircleCheck } from "lucide-react";
+import { DASHBOARD_PAGE_ROUTE } from "@/lib/routes";
 
 const formSchema = z.object({
   email: z.string().email({ message: "El correo electrónico no es válido" }),
@@ -69,7 +70,7 @@ export default function LoginForm() {
     setIsLoading(false);
 
     setTimeout(() => {
-      router.push("/");
+      router.push(DASHBOARD_PAGE_ROUTE);
     }, 2000);
   }
 
