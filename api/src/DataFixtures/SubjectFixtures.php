@@ -221,12 +221,6 @@ class SubjectFixtures extends Fixture implements DependentFixtureInterface
                 'programs' => ['e3d473e7-1517-4777-9161-9f27342f1fbf'],
             ],
             [
-                'id' => Uuid::uuid4(),
-                'name' => '',
-                'description' => '',
-                'programs' => ['e3d473e7-1517-4777-9161-9f27342f1fbf'],
-            ],
-            [
                 'id' => '1d5bda43-be9f-4a0b-92ff-ab6a7958eb49',
                 'name' => 'Habilidades sociales',
                 'description' => 'Este módulo de Habilidades Sociales está diseñado para dotar a los estudiantes de competencias esenciales en comunicación y dinamización grupal, fundamentales para su desempeño en el sector del acondicionamiento físico. Los resultados de aprendizaje abarcan desde la implementación de estrategias de comunicación basadas en inteligencia emocional, hasta la gestión de conflictos y la conducción de reuniones. El módulo se enfoca en el desarrollo de competencias como la empatía, la autocrítica, y el trabajo en equipo, así como en la capacidad para dinamizar grupos y resolver problemas de manera efectiva. Además, se subraya la importancia de la autoevaluación y la mejora continua en las habilidades sociales y la competencia profesional.',

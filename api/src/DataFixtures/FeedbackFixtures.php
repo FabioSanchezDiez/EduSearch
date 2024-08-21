@@ -46,7 +46,34 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
                 'institution_id' => '',
                 'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
                 'subject_id' => '',
-            ]
+            ],
+            [
+                'id' => Uuid::uuid4(),
+                'feedback' => 'El segundo año esta más enfocado a desarrollar aplicaciones móviles con Kotlin o Java',
+                'rating' => 5,
+                'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
+                'institution_id' => '',
+                'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
+                'subject_id' => '',
+            ],
+            [
+                'id' => Uuid::uuid4(),
+                'feedback' => 'Recomiendo aprovechar al máximo la asignatura de acceso a datos de 2º, te da una fuerte base para crear APIs, lo cual es algo muy importante en esta profesión',
+                'rating' => 5,
+                'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
+                'institution_id' => '',
+                'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
+                'subject_id' => '',
+            ],
+            [
+                'id' => Uuid::uuid4(),
+                'feedback' => 'Excelente ciclo para aprender a desarrollar páginas y aplicaciones web completas.',
+                'rating' => 5,
+                'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
+                'institution_id' => '',
+                'program_id' => '3eee4e2a-5072-48b3-a9c3-8f0c36a76fc0',
+                'subject_id' => '',
+            ],
         ];
     }
 

@@ -42,15 +42,6 @@ class UserFixtures extends Fixture
                 'address' => 'Granada',
                 'roles' => ["ROLE_USER"]
             ],
-            [
-                'id' => '2d6e15fd-405d-4844-813c-e2a6cf2a851e',
-                'name' => 'Admin User',
-                'email' => 'admin@example.com',
-                'password' => '$2y$13$JKAHm8CB0DjWgMpm2wXgoeEPiKvbumY6cTLKMpZcCf6uGI1Tz8or6',
-                'is_verified' => true,
-                'address' => 'Granada',
-                'roles' => ["ROLE_USER", "ROLE_ADMIN"]
-            ],
         ];
     }
 }
