@@ -21,4 +21,7 @@ export type Subject = {
   description: string;
 };
 
-export type ProgramItem = Pick<Program, "id" | "name" | "description" | "tag">;
+export type ProgramItem = Pick<
+  Program,
+  "id" | "name" | "description" | "tag" | "type"
+>;
