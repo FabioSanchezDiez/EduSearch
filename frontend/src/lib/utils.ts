@@ -6,8 +6,20 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatString(str: string) {
+  const accentsMap: { [key: string]: string } = {
+    á: "a",
+    é: "e",
+    í: "i",
+    ó: "o",
+    ú: "u",
+  };
+
+  const normalizeStr = str
+    .toLowerCase()
+    .replace(/[áéíóú]/g, (match) => accentsMap[match]);
+
   return encodeURIComponent(
-    str.toLowerCase().replace(/\s+/g, "-").replace(/,/g, "")
+    normalizeStr.replace(/\s+/g, "-").replace(/,/g, "")
   );
 }
 
