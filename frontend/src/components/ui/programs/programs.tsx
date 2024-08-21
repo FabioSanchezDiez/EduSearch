@@ -15,6 +15,7 @@ export default async function Programs({ field }: { field: string }) {
             name={program.name}
             description={program.description}
             tag={program.tag}
+            type={program.type}
           ></ProgramCard>
         ))}
     </section>
