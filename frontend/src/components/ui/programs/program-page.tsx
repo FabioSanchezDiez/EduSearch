@@ -27,7 +27,7 @@ export default async function ProgramPage({
 
   const renderField = (
     field: any,
-    defaultMessage: string = "No se han encontrado datos"
+    defaultMessage: string = "No se han encontrado datos."
   ) => {
     return field || defaultMessage;
   };
@@ -49,13 +49,17 @@ export default async function ProgramPage({
           <div>
             <h2 className="text-xl font-medium">Información Adicional</h2>
             {program?.additionalInformation ? (
-              <a href={program.additionalInformation} target="_blank">
+              <a
+                href={program.additionalInformation}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button variant={"secondary"} className="mt-2">
                   Consultar
                 </Button>
               </a>
             ) : (
-              <p>No se han encontrado datos</p>
+              <p>No se han encontrado datos.</p>
             )}
           </div>
         </section>
@@ -100,7 +104,14 @@ export default async function ProgramPage({
                       </HoverCard>
                     ))
                   ) : (
-                    <p className="text-lg">No se han encontrado datos</p>
+                    <p className="text-lg">
+                      Haz click en el botón de Consultar en la sección de{" "}
+                      <span className="font-semibold">
+                        Información Adicional
+                      </span>{" "}
+                      para obtener información acerca de las asignaturas de este
+                      programa.
+                    </p>
                   )}
                 </div>
               </AccordionContent>
