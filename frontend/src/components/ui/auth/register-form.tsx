@@ -37,6 +37,7 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, CircleCheck } from "lucide-react";
 import { registerUser } from "@/lib/data";
+import { LOGIN_PAGE_ROUTE } from "@/lib/routes";
 
 const formSchema = z.object({
   username: z
@@ -107,7 +108,7 @@ export default function RegisterForm() {
     setIsLoading(false);
 
     setTimeout(() => {
-      router.push("/");
+      router.push(LOGIN_PAGE_ROUTE);
     }, 2000);
   }
 
