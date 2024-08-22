@@ -16,6 +16,18 @@ class InstitutionRepository extends ServiceEntityRepository
         parent::__construct($registry, Institution::class);
     }
 
+    public function findEducationalInstitutionsByProgram(string $programId): array
+    {
+        return $this->createQueryBuilder('i')
+            ->innerJoin('i.programs', 'p')
+            ->where('i.type = :type')
+            ->andWhere('p.id = :programId')
+            ->setParameter('type', 'Educación')
+            ->setParameter('programId', $programId)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Institution[] Returns an array of Institution objects
     //     */
