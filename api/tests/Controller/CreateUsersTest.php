@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class RegisterUserTest extends WebTestCase
+class CreateUsersTest extends WebTestCase
 {
     use ResetDatabase;
     private KernelBrowser $client;
