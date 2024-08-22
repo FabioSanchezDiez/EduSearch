@@ -117,6 +117,7 @@ class CreateFeedbackTest extends WebTestCase
         $institution->setName('IES Zaidín Vergeles');
         $institution->setDescription('Centro público');
         $institution->setProvince('Granada');
+        $institution->setType('Educación');
         $institution->setLastUpdate(new \DateTime('2024-07-17'));
 
         $this->em->persist($institution);
