@@ -43,6 +43,7 @@ security:
         - { path: ^/api/dashboard, roles: IS_AUTHENTICATED_FULLY }
         - { path: /api/feedback/create, roles: IS_AUTHENTICATED_FULLY }
         - { path: /api/programs/user, roles: IS_AUTHENTICATED_FULLY }
+        - { path: /api/users/programs/enroll, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
