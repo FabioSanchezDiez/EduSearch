@@ -31,4 +31,13 @@ class UserController extends AbstractController
 
         return new JsonResponse(["success" => "Usuario confirmado correctamente"], Response::HTTP_OK);
     }
+
+    #[Route('/users/programs/enroll', name: 'users_programs_enroll', methods: ['POST'])]
+    public function enrollUserInProgram(Request $request): JsonResponse
+    {
+        $userData = json_decode($request->getContent(), true);
+        $this->userService->enrollUser($userData);
+
+        return new JsonResponse(["success" => "Usuario inscrito correctamente"], Response::HTTP_OK);
+    }
 }
