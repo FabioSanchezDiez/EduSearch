@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Program;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,6 +42,21 @@ class UserService
         $user->setToken(null);
         $this->entityManager->flush();
         return true;
+    }
+
+    public function enrollUser(array $userData): void
+    {
+        $programRepository = $this->entityManager->getRepository(Program::class);
+
+        $user = $this->userRepository->findOneBy(["email" => $userData["email"]]);
+        $program = $programRepository->find($userData["programId"]);
+
+        if ($user && $program) {
+            $user->setProgram($program);
+            $this->userRepository->createOrUpdateUser($user);
+        } else {
+            throw new \Exception("Usuario o programa no encontrado");
+        }
     }
 
     private function generateConfirmationToken(): string
