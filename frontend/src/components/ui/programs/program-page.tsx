@@ -1,4 +1,6 @@
 import { fetchProgramByName, fetchSubjectsByProgram } from "@/lib/data";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/configs/auth/authOption";
 import { Program, Subject } from "@/types/definitions";
 import { Button } from "../button";
 
@@ -16,6 +18,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import EnrollButton from "./enroll-button";
 
 export default async function ProgramPage({
   programName,
@@ -24,6 +27,7 @@ export default async function ProgramPage({
 }) {
   const program: Program = await fetchProgramByName(programName);
   const subjects: Subject[] = await fetchSubjectsByProgram(program?.id);
+  const session = await getServerSession(authOptions);
 
   const renderField = (
     field: any,
@@ -46,20 +50,24 @@ export default async function ProgramPage({
             Si consideras que falta información importante respecto a este
             programa, ponte en contacto con nosotros.
           </p>
-          <div>
-            <h2 className="text-xl font-medium">Información Adicional</h2>
-            {program?.additionalInformation ? (
-              <a
-                href={program.additionalInformation}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant={"secondary"} className="mt-2">
-                  Consultar
-                </Button>
-              </a>
-            ) : (
-              <p>No se han encontrado datos.</p>
+          <div className="grid grid-cols-2">
+            <div className="flex flex-col">
+              <h2 className="text-xl font-medium">Información Adicional</h2>
+              {program?.additionalInformation ? (
+                <a
+                  href={program.additionalInformation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 w-12"
+                >
+                  <Button variant={"secondary"}>Consultar</Button>
+                </a>
+              ) : (
+                <p>No se han encontrado datos.</p>
+              )}
+            </div>
+            {session?.user && (
+              <EnrollButton programId={program.id}></EnrollButton>
             )}
           </div>
         </section>

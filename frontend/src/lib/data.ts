@@ -126,3 +126,31 @@ export async function confirmUser(token: string) {
     throw new Error("Failed to confirm the user");
   }
 }
+
+export async function enrollUserInProgram(
+  email: string,
+  programId: string,
+  token: string
+) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/programs/enroll`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          email,
+          programId,
+        }),
+      }
+    );
+    const data = await res.json();
+
+    return data;
+  } catch (err) {
+    throw new Error("Failed to enroll the user");
+  }
+}
