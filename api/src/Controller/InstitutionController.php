@@ -18,7 +18,15 @@ class InstitutionController extends AbstractController
     #[Route('/institutions/educational/{programId}', name: 'institutions_educational_by_program', methods: ['GET'])]
     public function institutionsEducationalByProgram(string $programId): Response
     {
-        $institutions = $this->institutionRepository->findEducationalInstitutionsByProgram($programId);
+        $institutions = $this->institutionRepository->findInstitutionsByProgram('Educación', $programId);
+        $data = $this->serializer->serialize($institutions, 'json', self::DATETIME_FORMAT);
+        return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/institutions/enterprise/{programId}', name: 'institutions_enterprise_by_program', methods: ['GET'])]
+    public function institutionsEnterpriseByProgram(string $programId): Response
+    {
+        $institutions = $this->institutionRepository->findInstitutionsByProgram('Prácticas', $programId);
         $data = $this->serializer->serialize($institutions, 'json', self::DATETIME_FORMAT);
         return new Response($data, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
