@@ -8,7 +8,7 @@ export default function ProgramsPage({
   params: { program: string };
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-10">
       <Suspense fallback={<GenericSkeleton></GenericSkeleton>}>
         <ProgramPage programName={params.program}></ProgramPage>
       </Suspense>

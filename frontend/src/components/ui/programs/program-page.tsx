@@ -18,7 +18,19 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import EnrollButton from "./enroll-button";
+import { InfoIcon } from "lucide-react";
+import InstitutionsEducationalCarousel from "./institutions-educational-carousel";
+import { Suspense } from "react";
+import RowSkeleton from "../skeletons/row-skeleton";
 
 export default async function ProgramPage({
   programName,
@@ -27,8 +39,8 @@ export default async function ProgramPage({
 }) {
   const program: Program = await fetchProgramByName(programName);
   const subjects: Subject[] = await fetchSubjectsByProgram(program?.id);
-  const session = await getServerSession(authOptions);
 
+  const session = await getServerSession(authOptions);
   const renderField = (
     field: any,
     defaultMessage: string = "No se han encontrado datos."
@@ -126,6 +138,32 @@ export default async function ProgramPage({
             </AccordionItem>
           </Accordion>
         </section>
+      </section>
+      <section className="flex flex-col gap-4">
+        <div className="flex gap-2">
+          <h3 className="text-2xl font-semibold">
+            Instituciones Educativas en las que se imparte
+          </h3>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <InfoIcon></InfoIcon>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  En esta sección solo aparecen algunas de las instituciones que
+                  ofrecen este programa. Si deseas encontrar más opciones
+                  asegurate de realizar una búsqueda más profunda.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        <Suspense fallback={<RowSkeleton length={2}></RowSkeleton>}>
+          <InstitutionsEducationalCarousel
+            id={program?.id}
+          ></InstitutionsEducationalCarousel>
+        </Suspense>
       </section>
     </>
   );
