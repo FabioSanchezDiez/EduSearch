@@ -97,6 +97,19 @@ export async function fetchEducationalInstitutionsByProgram(id: string) {
   }
 }
 
+export async function fetchEnterpriseInstitutionsByProgram(id: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/institutions/enterprise/${id}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error("Failed to fetch institutions:");
+  }
+}
+
 export async function registerUser(
   name: string,
   email: string,
