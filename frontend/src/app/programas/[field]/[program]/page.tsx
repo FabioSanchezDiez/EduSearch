@@ -1,5 +1,5 @@
 import ProgramPage from "@/components/ui/programs/program-page";
-import GenericSkeleton from "@/components/ui/skeletons/generic-skeleton";
+import ProgramPageSkeleton from "@/components/ui/skeletons/program-page-skeleton";
 import { Suspense } from "react";
 
 export default function ProgramsPage({
@@ -9,7 +9,7 @@ export default function ProgramsPage({
 }) {
   return (
     <div className="flex flex-col gap-10">
-      <Suspense fallback={<GenericSkeleton></GenericSkeleton>}>
+      <Suspense fallback={<ProgramPageSkeleton></ProgramPageSkeleton>}>
         <ProgramPage programName={params.program}></ProgramPage>
       </Suspense>
     </div>
