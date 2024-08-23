@@ -15,6 +15,9 @@ import {
 import { Button } from "../button";
 import Link from "next/link";
 import { PROGRAMS_PAGE_ROUTE } from "@/lib/routes";
+import InstitutionsEnterpriseComponent from "./institutions-enterprise-component";
+import { Suspense } from "react";
+import RowSkeleton from "../skeletons/row-skeleton";
 
 export default async function MyProgram() {
   const session = await getServerSession(authOptions);
@@ -64,10 +67,15 @@ export default async function MyProgram() {
                   )}
                 </article>
                 <Separator></Separator>
-                <article>
+                <article className="flex flex-col gap-4">
                   <h5 className="text-2xl font-medium leading-[115%]">
                     Empresas del sector:
                   </h5>
+                  <Suspense fallback={<RowSkeleton length={2}></RowSkeleton>}>
+                    <InstitutionsEnterpriseComponent
+                      id={program?.id}
+                    ></InstitutionsEnterpriseComponent>
+                  </Suspense>
                 </article>
               </>
             ) : (
