@@ -1,8 +1,5 @@
-import { unstable_noStore } from "next/cache";
-
 export async function fetchFields() {
   try {
-    unstable_noStore();
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/fields`);
     const data = await res.json();
     return data;
@@ -13,7 +10,6 @@ export async function fetchFields() {
 
 export async function fetchProgramsByField(fieldId: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/field/${fieldId}`
     );
@@ -26,7 +22,6 @@ export async function fetchProgramsByField(fieldId: string) {
 
 export async function fetchProgramsByFieldName(fieldName: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/field/name/${fieldName}`
     );
@@ -39,7 +34,6 @@ export async function fetchProgramsByFieldName(fieldName: string) {
 
 export async function fetchProgramByName(name: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/name/${name}`
     );
@@ -52,7 +46,6 @@ export async function fetchProgramByName(name: string) {
 
 export async function fetchProgramByUser(email: string, token: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/programs/user/${email}`,
       {
@@ -73,7 +66,6 @@ export async function fetchProgramByUser(email: string, token: string) {
 
 export async function fetchSubjectsByProgram(id: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/subjects/program/${id}`
     );
@@ -86,7 +78,6 @@ export async function fetchSubjectsByProgram(id: string) {
 
 export async function fetchEducationalInstitutionsByProgram(id: string) {
   try {
-    unstable_noStore();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/institutions/educational/${id}`
     );
