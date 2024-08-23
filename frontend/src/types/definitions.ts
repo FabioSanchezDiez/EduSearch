@@ -21,6 +21,15 @@ export type Subject = {
   description: string;
 };
 
+export type Institution = {
+  id: string;
+  name: string;
+  description: string;
+  lastUpdate: Date;
+  province: string;
+  type: string;
+};
+
 export type ProgramItem = Pick<
   Program,
   "id" | "name" | "description" | "tag" | "type"
