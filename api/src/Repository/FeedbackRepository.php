@@ -20,23 +20,6 @@ class FeedbackRepository extends ServiceEntityRepository
 
     public function createFeedback(array $feedbackData): Feedback
     {
-        $filledEntities = 0;
-
-        if (!empty($feedbackData['institution'])) {
-            $filledEntities++;
-        }
-
-        if (!empty($feedbackData['subject'])) {
-            $filledEntities++;
-        }
-
-        if (!empty($feedbackData['program'])) {
-            $filledEntities++;
-        }
-
-        if ($filledEntities > 1) {
-            throw new \InvalidArgumentException('Solo se puede añadir feedback para una entidad en la misma reseña');
-        }
 
         $user = $this->userRepository->findOneBy(['email' => $feedbackData['user']]);
         $program = $this->programRepository->find($feedbackData['program']);
@@ -46,13 +29,14 @@ class FeedbackRepository extends ServiceEntityRepository
         if ($existingFeedback) {
             throw new \InvalidArgumentException('Ya has enviado una opinión para este programa');
         }
-        
+
+        if ($this->containsProhibitedContent($feedbackData['feedback'])) {
+            throw new \InvalidArgumentException('El feedback contiene contenido no permitido.');
+        }
+
         $feedback = new Feedback();
         $feedback->setId(Uuid::uuid4());
         $feedback->setFeedback($feedbackData['feedback']);
-        $feedback->setRating($feedbackData['rating']);
-        $feedback->setInstitution($this->institutionRepository->find($feedbackData['institution']));
-        $feedback->setSubject($this->subjectRepository->find($feedbackData['subject']));
         $feedback->setProgram($program);
         $feedback->setUser($user);
 
@@ -61,6 +45,37 @@ class FeedbackRepository extends ServiceEntityRepository
 
         return $feedback;
     }
+
+    private function containsProhibitedContent(string $content): bool
+    {
+        $prohibitedWords = ['mierda', 'joder', 'imbecil', 'idiota', 'maldito'];
+
+        foreach ($prohibitedWords as $word) {
+            if (stripos($content, $word) !== false) {
+                return true;
+            }
+        }
+
+        if ($this->containsRepetitiveSpam($content)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function containsRepetitiveSpam(string $content): bool
+    {
+        if (preg_match('/(.)\\1{9,}/', $content)) {
+            return true;
+        }
+
+        if (preg_match('/([a-zA-Z]{2,})\\1{2,}/', $content)) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     //    /**
     //     * @return Feedback[] Returns an array of Feedback objects
