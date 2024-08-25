@@ -123,6 +123,35 @@ export async function fetchFeedbackByProgram(id: string) {
   }
 }
 
+export async function submitProgramFeedback(
+  feedback: string,
+  user: string,
+  program: string,
+  token: string
+) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/feedback/create`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          feedback,
+          user,
+          program,
+        }),
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error("Failed to submit feedback");
+  }
+}
+
 export async function registerUser(
   name: string,
   email: string,
