@@ -30,6 +30,12 @@ export type Institution = {
   type: string;
 };
 
+export type Feedback = {
+  id: string;
+  feedback: string;
+  rating: number;
+};
+
 export type ProgramItem = Pick<
   Program,
   "id" | "name" | "description" | "tag" | "type"
