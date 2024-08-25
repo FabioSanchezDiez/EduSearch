@@ -33,6 +33,7 @@ import { Suspense } from "react";
 import RowSkeleton from "../skeletons/row-skeleton";
 import FeedbackComponent from "../feedback/feedback-component";
 import FeedbackSkeleton from "../skeletons/feedback-skeleton";
+import FeedbackButton from "../feedback/feedback-button";
 
 export default async function ProgramPage({
   programName,
@@ -168,10 +169,17 @@ export default async function ProgramPage({
         </Suspense>
       </section>
       <section className="flex flex-col gap-4">
-        <div className="flex gap-2">
+        <div className="flex justify-between gap-2">
           <h3 className="text-2xl font-semibold">
             Opiniones sobre este programa
           </h3>
+          {session?.user && (
+            <FeedbackButton
+              programId={program?.id}
+              userEmail={session.user.email}
+              jwt={session.user.token}
+            ></FeedbackButton>
+          )}
         </div>
         <Suspense fallback={<FeedbackSkeleton length={3}></FeedbackSkeleton>}>
           <FeedbackComponent id={program?.id}></FeedbackComponent>
