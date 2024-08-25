@@ -24,7 +24,6 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
             $feedback = new Feedback();
             $feedback->setId(Uuid::fromString($feedbackInfo['id']));
             $feedback->setFeedback($feedbackInfo['feedback']);
-            $feedback->setRating($feedbackInfo['rating']);
             $feedback->setUser($manager->getReference(User::class, Uuid::fromString($feedbackInfo['user_id'])));
             $feedback->setInstitution($feedbackInfo['institution_id'] ? $manager->getReference(Institution::class, Uuid::fromString($feedbackInfo['institution_id'])) : null);
             $feedback->setProgram($feedbackInfo['program_id'] ? $manager->getReference(Program::class, Uuid::fromString($feedbackInfo['program_id'])) : null);
@@ -41,7 +40,6 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
             [
                 'id' => 'c39cf262-4b3f-4821-8f39-5a3a2fe07358',
                 'feedback' => 'Curso muy completo si te quieres dedicar a la programación, completamente recomendado para todos aquellos que quieran aprender desde las bases de la programción hasta como desarrollar aplicaciones completas.',
-                'rating' => 5,
                 'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
                 'institution_id' => '',
                 'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
@@ -50,7 +48,6 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
             [
                 'id' => Uuid::uuid4(),
                 'feedback' => 'El segundo año esta más enfocado a desarrollar aplicaciones móviles con Kotlin o Java',
-                'rating' => 5,
                 'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
                 'institution_id' => '',
                 'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
@@ -59,7 +56,6 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
             [
                 'id' => Uuid::uuid4(),
                 'feedback' => 'Recomiendo aprovechar al máximo la asignatura de acceso a datos de 2º, te da una fuerte base para crear APIs, lo cual es algo muy importante en esta profesión',
-                'rating' => 5,
                 'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
                 'institution_id' => '',
                 'program_id' => '2c0892fe-8a29-426b-8c18-e8fb92bf5868',
@@ -68,7 +64,6 @@ class FeedbackFixtures extends Fixture implements DependentFixtureInterface
             [
                 'id' => Uuid::uuid4(),
                 'feedback' => 'Excelente ciclo para aprender a desarrollar páginas y aplicaciones web completas.',
-                'rating' => 5,
                 'user_id' => 'f0325753-b06f-475c-a166-7735e58ef1cb',
                 'institution_id' => '',
                 'program_id' => '3eee4e2a-5072-48b3-a9c3-8f0c36a76fc0',

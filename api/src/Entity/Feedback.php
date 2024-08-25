@@ -20,9 +20,6 @@ class Feedback
     #[ORM\Column(length: 255)]
     private ?string $feedback = null;
 
-    #[ORM\Column]
-    private ?int $rating = null;
-
     #[ORM\ManyToOne(inversedBy: 'feedback')]
     #[ORM\JoinColumn(nullable: false)]
     #[Ignore]
@@ -58,18 +55,6 @@ class Feedback
     public function setFeedback(string $feedback): static
     {
         $this->feedback = $feedback;
-
-        return $this;
-    }
-
-    public function getRating(): ?int
-    {
-        return $this->rating;
-    }
-
-    public function setRating(int $rating): static
-    {
-        $this->rating = $rating;
 
         return $this;
     }
