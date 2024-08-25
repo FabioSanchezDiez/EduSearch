@@ -110,6 +110,19 @@ export async function fetchEnterpriseInstitutionsByProgram(id: string) {
   }
 }
 
+export async function fetchFeedbackByProgram(id: string) {
+  try {
+    unstable_noStore();
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/feedback/program/${id}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error("Failed to fetch feedback:");
+  }
+}
+
 export async function registerUser(
   name: string,
   email: string,

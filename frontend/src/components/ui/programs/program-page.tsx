@@ -31,6 +31,8 @@ import { InfoIcon } from "lucide-react";
 import InstitutionsEducationalCarousel from "./institutions-educational-carousel";
 import { Suspense } from "react";
 import RowSkeleton from "../skeletons/row-skeleton";
+import FeedbackComponent from "../feedback/feedback-component";
+import FeedbackSkeleton from "../skeletons/feedback-skeleton";
 
 export default async function ProgramPage({
   programName,
@@ -64,7 +66,7 @@ export default async function ProgramPage({
           </p>
           <div className="grid grid-cols-2">
             <div className="flex flex-col">
-              <h2 className="text-xl font-medium">Información Adicional</h2>
+              <p className="text-xl font-medium">Información Adicional</p>
               {program?.additionalInformation ? (
                 <a
                   href={program.additionalInformation}
@@ -141,9 +143,9 @@ export default async function ProgramPage({
       </section>
       <section className="flex flex-col gap-4">
         <div className="flex gap-2">
-          <h3 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold">
             Instituciones Educativas en las que se imparte
-          </h3>
+          </h2>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -163,6 +165,16 @@ export default async function ProgramPage({
           <InstitutionsEducationalCarousel
             id={program?.id}
           ></InstitutionsEducationalCarousel>
+        </Suspense>
+      </section>
+      <section className="flex flex-col gap-4">
+        <div className="flex gap-2">
+          <h3 className="text-2xl font-semibold">
+            Opiniones sobre este programa
+          </h3>
+        </div>
+        <Suspense fallback={<FeedbackSkeleton length={3}></FeedbackSkeleton>}>
+          <FeedbackComponent id={program?.id}></FeedbackComponent>
         </Suspense>
       </section>
     </>
