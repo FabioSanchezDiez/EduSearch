@@ -1,3 +1,4 @@
+import FeedbackSkeleton from "./feedback-skeleton";
 import RowSkeleton from "./row-skeleton";
 
 export default function ProgramPageSkeleton() {
@@ -8,6 +9,7 @@ export default function ProgramPageSkeleton() {
         <div className="w-full h-56 rounded-xl bg-slate-200 dark:bg-zinc-900 animate-pulse"></div>
       </section>
       <RowSkeleton length={2}></RowSkeleton>
+      <FeedbackSkeleton length={3}></FeedbackSkeleton>
     </>
   );
 }
