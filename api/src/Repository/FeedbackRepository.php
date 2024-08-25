@@ -38,14 +38,23 @@ class FeedbackRepository extends ServiceEntityRepository
             throw new \InvalidArgumentException('Solo se puede añadir feedback para una entidad en la misma reseña');
         }
 
+        $user = $this->userRepository->findOneBy(['email' => $feedbackData['user']]);
+        $program = $this->programRepository->find($feedbackData['program']);
+
+        $existingFeedback = $this->findOneBy(['user' => $user, 'program' => $program]);
+
+        if ($existingFeedback) {
+            throw new \InvalidArgumentException('Ya has enviado una opinión para este programa');
+        }
+        
         $feedback = new Feedback();
         $feedback->setId(Uuid::uuid4());
         $feedback->setFeedback($feedbackData['feedback']);
         $feedback->setRating($feedbackData['rating']);
         $feedback->setInstitution($this->institutionRepository->find($feedbackData['institution']));
         $feedback->setSubject($this->subjectRepository->find($feedbackData['subject']));
-        $feedback->setProgram($this->programRepository->find($feedbackData['program']));
-        $feedback->setUser($this->userRepository->find($feedbackData['user']));
+        $feedback->setProgram($program);
+        $feedback->setUser($user);
 
         $this->entityManager->persist($feedback);
         $this->entityManager->flush();
