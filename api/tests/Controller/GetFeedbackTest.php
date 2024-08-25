@@ -58,7 +58,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = new Feedback();
         $feedback->setId(Uuid::fromString('c39cf262-4b3f-4821-8f39-5a3a2fe07358'));
         $feedback->setFeedback('Curso muy completo si te quieres dedicar a la programación, completamente recomendado para todos aquellos que quieran aprender desde las bases de la programción hasta como desarrollar aplicaciones completas.');
-        $feedback->setRating(5);
         $feedback->setUser($user);
         $feedback->setProgram($program);
 
@@ -77,7 +76,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = $this->feedbackRepository->find('c39cf262-4b3f-4821-8f39-5a3a2fe07358');
         $this->assertNotNull($feedback);
         $this->assertEquals('Curso muy completo si te quieres dedicar a la programación, completamente recomendado para todos aquellos que quieran aprender desde las bases de la programción hasta como desarrollar aplicaciones completas.', $feedback->getFeedback());
-        $this->assertEquals(5, $feedback->getRating());
         $this->assertEquals($user, $feedback->getUser());
         $this->assertEquals($program, $feedback->getProgram());
     }
@@ -105,7 +103,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = new Feedback();
         $feedback->setId(Uuid::fromString('c39cf262-4b3f-4821-8f39-5a3a2fe07358'));
         $feedback->setFeedback('Feedback de prueba');
-        $feedback->setRating(4);
         $feedback->setUser($user);
         $feedback->setSubject($subject);
 
@@ -124,7 +121,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = $this->feedbackRepository->find('c39cf262-4b3f-4821-8f39-5a3a2fe07358');
         $this->assertNotNull($feedback);
         $this->assertEquals('Feedback de prueba', $feedback->getFeedback());
-        $this->assertEquals(4, $feedback->getRating());
         $this->assertEquals($user, $feedback->getUser());
         $this->assertEquals($subject, $feedback->getSubject());
     }
@@ -155,7 +151,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = new Feedback();
         $feedback->setId(Uuid::fromString('c39cf262-4b3f-4821-8f39-5a3a2fe07358'));
         $feedback->setFeedback('Feedback de prueba');
-        $feedback->setRating(3);
         $feedback->setUser($user);
         $feedback->setInstitution($institution);
 
@@ -174,7 +169,6 @@ class GetFeedbackTest extends WebTestCase
         $feedback = $this->feedbackRepository->find('c39cf262-4b3f-4821-8f39-5a3a2fe07358');
         $this->assertNotNull($feedback);
         $this->assertEquals('Feedback de prueba', $feedback->getFeedback());
-        $this->assertEquals(3, $feedback->getRating());
         $this->assertEquals($user, $feedback->getUser());
         $this->assertEquals($institution, $feedback->getInstitution());
     }
