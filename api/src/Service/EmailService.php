@@ -12,7 +12,7 @@ class EmailService
     public function sendConfirmationEmail(string $name, string $email, string $token): void
     {
         $email = (new Email())
-            ->from('accounts@edusearch.com')
+            ->from('EduSearch <edusearchcontact@gmail.com>')
             ->to($email)
             ->subject('Confirma tu cuenta en EduSearch')
             ->html($this->createBody($name,$token));
