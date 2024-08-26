@@ -27,10 +27,14 @@ class UserService
         $hashedPassword = $this->passwordHasher->hashPassword($user, $userData['password']);
         $user->setPassword($hashedPassword);
 
-        $success = $this->userRepository->createOrUpdateUser($user);
-
-        if($success){
+        $this->entityManager->beginTransaction();
+        try {
+            $this->userRepository->createOrUpdateUser($user);
             $this->emailService->sendConfirmationEmail($user->getName(), $user->getEmail(), $user->getToken());
+            $this->entityManager->commit();
+        } catch (\Exception $e) {
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
         }
     }
 
