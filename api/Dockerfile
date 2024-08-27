@@ -1,26 +1,18 @@
-FROM php:8.1-fpm
+FROM richarvey/nginx-php-fpm:2.1.2
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libzip-dev \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+COPY . .
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd mysqli pdo pdo_mysql zip
+# Symfony config
+ENV APP_ENV prod
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
-
-WORKDIR /var/www/html
-
-EXPOSE 9000
-
-CMD ["php-fpm"]
+CMD ["/start.sh"]
