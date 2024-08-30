@@ -32,11 +32,11 @@
     <a href="https://github.com/FabioSanchezDiez/EduSearch/blob/master/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/FabioSanchezDiez/EduSearch">View Demo</a>
+    <a href="https://edusearch.es/">View Demo</a>
     ·
-    <a href="https://github.com/FabioSanchezDiez/EduSearch/issues/new">Report Bug</a>
+    <a href="https://github.com/FabioSanchezDiez/EduSearch/issues/new?assignees=&labels=bug&projects=&template=BUG.yaml">Report Bug</a>
     ·
-    <a href="https://github.com/FabioSanchezDiez/EduSearch/issues/new">Request Feature</a>
+    <a href="https://github.com/FabioSanchezDiez/EduSearch/issues/new?assignees=&labels=enhancement&projects=&template=FEATURE.yaml">Request Feature</a>
   </p>
 </div>
 
@@ -53,6 +53,12 @@ EduSearch is an open-source project for the **Aircury Summer of Code 2024** prog
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
 - [![Tailwind][Tailwind.com]][Tailwind-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Acknowledgements
+
+I would like to extend my gratitude to my tutor **[Sergi](https://github.com/Sergih28)** for all the help and guidance he provided throughout this process, and to **[Aircury](https://www.aircury.es/)** for organizing and initiating a scholarship program like this, which allows ideas like mine to come to life.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
