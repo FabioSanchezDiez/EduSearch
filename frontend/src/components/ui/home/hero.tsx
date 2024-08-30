@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../button";
 import { REGISTER_PAGE_ROUTE } from "@/lib/routes";
+import { useSession } from "next-auth/react";
 
 export default function Hero() {
+  const { data: session } = useSession();
+
   return (
     <section className="container px-16 grid lg:grid-cols-2">
       <div className="flex flex-col justify-center items-start">
@@ -20,9 +25,11 @@ export default function Hero() {
           educativas para dar el próximo paso en tu carrera y te brinda ayuda en
           la misma a través de opiniones.
         </p>
-        <Link href={REGISTER_PAGE_ROUTE}>
-          <Button>Registrarse</Button>
-        </Link>
+        {!session?.user && (
+          <Link href={REGISTER_PAGE_ROUTE}>
+            <Button>Registrarse</Button>
+          </Link>
+        )}
       </div>
       <div className="hidden lg:block mx-auto mt-8 sm:mt-0">
         <Image
