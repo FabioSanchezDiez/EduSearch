@@ -264,7 +264,9 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Registrarse</Button>
+          <Button type="submit" disabled={isSuccess && true}>
+            Registrarse
+          </Button>
         </form>
       </Form>
     </>

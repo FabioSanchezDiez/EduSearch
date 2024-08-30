@@ -64,7 +64,9 @@ export default function ConfirmationPage({ token }: { token: string }) {
           ¡Estás a un click de confirmar tu cuenta!
         </h2>
         <div className="max-w-3xl">
-          <Button onClick={handleConfirmUser}>Confirmar Cuenta</Button>
+          <Button onClick={handleConfirmUser} disabled={isSuccess && true}>
+            Confirmar Cuenta
+          </Button>
         </div>
       </div>
     </>

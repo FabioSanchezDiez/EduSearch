@@ -145,7 +145,9 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Iniciar Sesión</Button>
+          <Button type="submit" disabled={isSuccess && true}>
+            Iniciar Sesión
+          </Button>
         </form>
       </Form>
     </>
